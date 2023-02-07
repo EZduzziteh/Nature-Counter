@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NatureCounter</string>
+    <string name="facebook_app_id">1493021990875125</string>
+    <string name="fb_login_protocol_scheme">fb1493021990875125</string>
+</resources>

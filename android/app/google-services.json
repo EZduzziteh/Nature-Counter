@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "741177480474",
+    "firebase_url": "https://nature-counter-9088b.firebaseio.com",
+    "project_id": "nature-counter-9088b",
+    "storage_bucket": "nature-counter-9088b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741177480474:android:6208e8829b5985fa3fc8a3",
+        "android_client_info": {
+          "package_name": "com.naturecounter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741177480474-nmhpvkkrmaghbq35buprmcau1jpmbaia.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.naturecounter",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "741177480474-6um6esqgrgg2fje8lhacfsrqt35eet3a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqrpdh3Exhk73xyU4nBDAlzYSiitlgePs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "741177480474-6um6esqgrgg2fje8lhacfsrqt35eet3a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
