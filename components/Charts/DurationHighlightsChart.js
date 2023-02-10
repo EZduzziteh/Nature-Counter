@@ -7,7 +7,7 @@ import WeekSelector from '../../components/Selector/WeekSelector';
 import WeekButtongroup from '../../components/Selector/weekButtonGroup';
 import Data from '../../SampleData/Data1'
 import styles from '../Section/styles';
-
+import OverviewSection from '../Section/OverviewSection'
 const data = Data;
 
 
@@ -19,6 +19,7 @@ function DurationHighlightsChart ()  {
     return <View elevation={5} style={styles.graphContainer}>
     <WeekButtongroup callback = {getDateRangeIndex}/>
     <WeekSelector dateInterval={dateRange}/>
+     <OverviewSection goalInMinutes = {200} currentInMinutes = {69} />
         <VictoryChart 
                     domainPadding={20} 
                     theme={VictoryTheme.material}>

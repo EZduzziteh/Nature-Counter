@@ -1,13 +1,14 @@
 import React from 'react';
 import { View } from 'react-native';
 import ReportOverviewCard from '../Card/ReportOverviewCard';
-import styles from './styles';
 
-const OverviewSection = () => {
+import ReportPercentageCard from '../Card/ReportPercentageCard';
+import styles from './styles';
+const OverviewSection = (data) => {
   return (
     <View style={styles.overviewContainer}>
-      <ReportOverviewCard title="Days in Nature" primary="3" secondary="7" />
-      <ReportOverviewCard title="Minutes in Nature" primary="103" secondary="120" />
+      <ReportPercentageCard title = "percent of goal achieved" percentage = {Math.round(data.currentInMinutes/data.goalInMinutes*100)} />
+      <ReportOverviewCard title="Minutes in Nature" primary={data.currentInMinutes} secondary={data.goalInMinutes} /> 
     </View>
   );
 };

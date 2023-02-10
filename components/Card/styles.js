@@ -47,8 +47,11 @@ const styles = StyleSheet.create({
   overViewCard: {
     backgroundColor: '#fff',
     paddingHorizontal: 30,
-    paddingVertical: 30,
-    width: 170,
+    paddingVertical: 10,
+    margin:10,
+    alignContent:'center',
+    alignItems:'center',
+    justifyContent:'center',
     borderRadius: 10,
     shadowOffset: {
       width: 0,
