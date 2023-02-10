@@ -47,8 +47,9 @@ const styles = StyleSheet.create({
   overViewCard: {
     backgroundColor: '#fff',
     paddingHorizontal: 30,
-    paddingVertical: 10,
-    margin:10,
+    paddingVertical: 5,
+    marginLeft:10,
+    marginRight:10,
     alignContent:'center',
     alignItems:'center',
     justifyContent:'center',
@@ -65,17 +66,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   primary: {
-    fontSize: 42,
+    fontSize: 36,
   },
   secondary: {
-    fontSize: 20,
+    fontSize: 24,
     marginLeft: 10,
   },
   card: {
     backgroundColor: '#fff',
-    paddingVertical: 20,
+    paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 20,
+    borderRadius: 10,
     width: 380,
   },
   readTimeContainer: {

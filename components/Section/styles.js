@@ -21,13 +21,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   graphContainer:{
-    margin: 5,
+    margin: 2,
     backgroundColor:'rgb(240, 240, 240)',
     borderStyle:'solid',
     borderColor:'rgb(100, 100, 100)',
     borderWidth: 1,
     
-    borderRadius: 10,
+    borderRadius: 5,
     
   }
 });

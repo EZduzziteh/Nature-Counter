@@ -6,15 +6,15 @@ import { MEDIUM_GREY } from '../Utilities/Constants';
 const styles = StyleSheet.create({
   weekSelector: {
     width: '100%',
-    height: 70,
+    height: 45,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
   arrowContainer: {
     borderWidth: 1,
-    paddingVertical: 4,
-    paddingHorizontal: 8,
+    paddingVertical: 2,
+    paddingHorizontal: 6,
     borderRadius: 5,
     borderColor: MEDIUM_GREY,
   },
