@@ -1,38 +1,35 @@
-import React from 'react';
+import React, {UseState} from 'react';
 import { View } from 'native-base';
-import {VictoryBar, VictoryChart, VictoryGroup} from 'victory-native';
+import {VictoryBar, VictoryChart, VictoryGroup, VictoryTheme } from 'victory-native';
 import { green } from 'react-native-redash';
 
+import WeekSelector from '../../components/Selector/WeekSelector';
+import WeekButtongroup from '../../components/Selector/weekButtonGroup';
+import Data from '../../SampleData/Data1'
+import styles from '../Section/styles';
+
+const data = Data;
 
 
-const data = {
-    
-    days:
-    [
-        {x: 'Mon', y:20},
-        {x: 'Tue', y:10},
-        {x: 'Wed', y:0},
-        {x: 'Thur', y:30},
-        {x: 'Fri', y:60},
-        {x: 'Sat', y:10},
-        {x: 'Sun', y:45}
-    ]
-}
+function DurationHighlightsChart ()  {
 
+    const [dateRange, getDateRangeIndex] = React.useState(1);
+  
 
-const  DurationHighlightsChart = () => {
-    return <View>
-
-        <VictoryChart>
-            <VictoryGroup offset = {50}>
-                <VictoryBar data = {data.days}
+    return <View elevation={5} style={styles.graphContainer}>
+    <WeekButtongroup callback = {getDateRangeIndex}/>
+    <WeekSelector dateInterval={dateRange}/>
+        <VictoryChart 
+                    domainPadding={20} 
+                    theme={VictoryTheme.material}>
+            <VictoryGroup 
+                        offset = {50}>
+                <VictoryBar 
+                            data = {dateRange===0?data.days:dateRange===1?data.weeks:data.months}
                             style = {{
-                                      
-                                        data:{
+                                       data:{
                                             fill:'green',
                                         },
-                            
-                            
                                     }}
                 
                 

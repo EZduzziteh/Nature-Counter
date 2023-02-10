@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const WeekSelector = () => {
+function WeekSelector  (dateInterval)  {
   return (
     <View style={styles.weekSelector}>
       <TouchableOpacity>
@@ -28,7 +28,7 @@ const WeekSelector = () => {
           <Icon name="arrow-left" type="material-community" />
         </View>
       </TouchableOpacity>
-      <Text>May 20 - May 26</Text>
+      <Text>{dateInterval.dateInterval}</Text>
       <TouchableOpacity>
         <View style={styles.arrowContainer}>
           <Icon name="arrow-right" type="material-community" />

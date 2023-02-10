@@ -1,4 +1,5 @@
 import { StyleSheet} from 'react-native';
+import { Colors } from 'react-native-paper';
 
 const styles = StyleSheet.create({
   buttonRow: {
@@ -19,6 +20,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
+  graphContainer:{
+    margin: 5,
+    backgroundColor:'rgb(240, 240, 240)',
+    borderStyle:'solid',
+    borderColor:'rgb(100, 100, 100)',
+    borderWidth: 1,
+    
+    borderRadius: 10,
+    
+  }
 });
 
 export default styles;
