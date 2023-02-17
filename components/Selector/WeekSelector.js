@@ -23,19 +23,21 @@ const styles = StyleSheet.create({
 function WeekSelector  (dateInterval)  {
   return (
     <View style={styles.weekSelector}>
-      <TouchableOpacity>
-        <View style={styles.arrowContainer}>
-          <Icon name="arrow-left" type="material-community" />
-        </View>
-      </TouchableOpacity>
+      
       <Text>{dateInterval.dateInterval}</Text>
-      <TouchableOpacity>
-        <View style={styles.arrowContainer}>
-          <Icon name="arrow-right" type="material-community" />
-        </View>
-      </TouchableOpacity>
+    
     </View>
   );
 };
+
+/*<TouchableOpacity>
+        <View style={styles.arrowContainer}>
+          <Icon name="arrow-left" type="material-community" />
+        </View>
+      </TouchableOpacity>  <TouchableOpacity>
+        <View style={styles.arrowContainer}>
+          <Icon name="arrow-right" type="material-community" />
+        </View>
+      </TouchableOpacity> */
 
 export default WeekSelector;

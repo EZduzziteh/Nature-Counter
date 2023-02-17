@@ -1,3 +1,4 @@
+import { Left } from 'native-base';
 import { StyleSheet} from 'react-native';
 import { Colors } from 'react-native-paper';
 
@@ -29,6 +30,24 @@ const styles = StyleSheet.create({
     
     borderRadius: 5,
     
+  },
+  datePicker:{
+    margin: 2,
+    backgroundColor:'rgb(100, 300, 100)',
+    borderStyle:'solid',
+    borderColor:'rgb(100, 100, 100)',
+    borderWidth: 1,
+    
+    borderRadius: 5,
+  },
+  dateRange:{
+
+    alignContent:'center',
+    justifyContent:'center',
+    textAlign:'center',
+    margin:2,
+    paddingBottom:5,
+
   }
 });
 
