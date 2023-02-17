@@ -48,6 +48,14 @@ const styles = StyleSheet.create({
     margin:2,
     paddingBottom:5,
 
+  },
+  tipsContainer:{
+    backgroundColor: 'rgb(82, 59, 104)',
+    color: 'rgb(0, 204, 102)',
+  },
+  tipsText:{
+    
+    color: 'rgb(102, 102, 153)',
   }
 });
 
