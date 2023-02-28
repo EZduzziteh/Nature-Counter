@@ -5,17 +5,28 @@ import BenefitsGainedSection from '../../components/Section/BenefitsGainedSectio
 import LoggedSymptomsSection from '../../components/Section/LoggedSymptomsSection';
 import TimeSpanTabs from '../../components/Selector/TimeSpanTabs';
 import DurationHighlightsChart from '../../components/Charts/DurationHighlightsChart';
+import ReportSharingSection from '../../components/Section/ReportSharingSection';
 import Tips from '../../components/Section/Tips';
 
 
 export default () => (
+
+  
+
+  
   <ScrollView>
     
     <AchievementsSection />
     <BenefitsGainedSection />
     <LoggedSymptomsSection />
     <DurationHighlightsChart />
+    <ReportSharingSection/>
     <Tips />
+
+   
+
 
   </ScrollView>
 );
+
+
