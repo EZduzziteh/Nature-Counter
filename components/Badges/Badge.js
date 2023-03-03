@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import data from '../../SampleData/data.json';
+import Moment from 'moment';
 
 const Badge = ({ children }) => {
-  const {mins} = data; 
+  //fetching data from json file
+  var {mins} = data; 
+
+  // get the current day of the week
+  const today = Moment().format('dddd'); 
+  console.log(today);
+
+  // reset the value of {mins} to 0 on Sunday
+  if (today == 'Sunday') {
+    mins = 0;
+  }
 
   return (
+    //Rendering view component to show the badge and displaying data in the text component 
     <View style={styles.badgeContainer}>
       <View style={styles.circle}>
         <View style={styles.innerCircle}>
@@ -18,6 +30,8 @@ const Badge = ({ children }) => {
     </View>
   );
 };
+
+//Style for the badge
 
 const styles = StyleSheet.create({
   badgeContainer: {

@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 
 const SilverBadge = ({ children }) => {
   return (
+    //Rendering view component to display the silver badge
     <View style={styles.badgeContainer}>
       <View style={styles.circle}>
         <Image source={require('../../assets/icons/Silver.png')} style={styles.icon}  />
@@ -12,6 +13,7 @@ const SilverBadge = ({ children }) => {
   );
 };
 
+//Style
 const styles = StyleSheet.create({
   badgeContainer: {
     alignItems: 'center',

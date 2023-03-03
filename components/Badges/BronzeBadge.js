@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 
+
 const BronzeBadge = ({ children }) => {
   return (
+    //Rendering view component to display the bronze badge
       <View style={styles.badgeContainer}>
         <View style={styles.circle}>
           <Image source={require('../../assets/icons/Bronze.png')} style={styles.icon}  />
@@ -12,6 +14,7 @@ const BronzeBadge = ({ children }) => {
     );
   };
   
+  //Style for the bronze badge 
   const styles = StyleSheet.create({
     badgeContainer: {
       alignItems: 'center',

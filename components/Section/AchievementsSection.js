@@ -12,7 +12,11 @@ import styles from './styles';
 import data from '../../SampleData/data.json';
 
 const AchievementsSection = () => {
+  //fetching data from json file
   const { mins } = data;
+
+  //rendering all badges and displaying award badges such as gold on the basis of minutes 
+  //fetching from json file in badge
   return (
     <>
 
