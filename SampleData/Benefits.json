@@ -1,0 +1,25 @@
+{
+    "benefits": [
+      { 
+        "title": "Decrease in pulse rate by 3.9%", 
+        "image" : "image2",
+        "text" : "Time in nature can result in a decrease in pulse rate (the physical sensation of a heart beat felt in the body) by 3.9%\nAmong healthy people, a lower resisting pulse rate is an indicator of a strong heart.",
+        "nextButton": true,
+        "learnMoreURL" : "https://crowddoing.world/"
+      },
+      {
+        "title": "Feel more relaxed, yet energized",
+        "image" : "image3",
+        "text": "Time in nature can result in a decrease in pulse rate (the physical sensation of a heart beat felt in the body) by 3.9%\nAmong healthy people, a lower resisting pulse rate is an indicator of a strong heart.",
+        "nextButton": false,
+        "learnMoreURL" : "https://app.riipen.com/projects/rV0M92Ol/details"
+      },
+      {
+        "title": "Decrease systolic blood pressure 1.9%",
+        "image" : "image1",
+        "text": "Time in nature can result in a decrease in pulse rate",
+        "nextButton": false,
+        "learnMoreURL" : "https://bowvalleycollege.ca/"
+      }
+    ]
+}

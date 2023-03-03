@@ -35,7 +35,11 @@ const Data = {
         {x:'Nov', y: 10},
         {x:'Dec', y: 5},
 
-    ]
+    ],
+    currentGoal: 60 //this is the goal for the user to spend time in nature and is represented in minutes
+
+    
+
 }
 
 export default Data;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 
 function WeekButtonGroup ({callback})  {
+  //this si the index for the week selector mode, 0 = daily, 1 = monthly, 2 = annual
   const [selectedIndex, setSelectedIndex] = useState(1);
 
   return (
@@ -20,7 +21,7 @@ function WeekButtonGroup ({callback})  {
           borderWidth:1,
           alignItems: 'center',
         }}
-        onPress={() => {setSelectedIndex(0); callback(0)} } //'Monday'
+        onPress={() => {setSelectedIndex(0); callback(0)} } //sends the callback with data  for daily mode back to durationhighlightschart
       >
         <Text>Weekly</Text>
       </TouchableOpacity>
@@ -34,7 +35,7 @@ function WeekButtonGroup ({callback})  {
           borderWidth:1,
           alignItems: 'center',
         }}
-        onPress={() => {setSelectedIndex(1); callback(1)}} //callback('May 1 - May 8')
+        onPress={() => {setSelectedIndex(1); callback(1)}}//sends the callback with data  for weekly mode back to durationhighlightschart
       >
         <Text>Monthly</Text>
       </TouchableOpacity>
@@ -51,7 +52,7 @@ function WeekButtonGroup ({callback})  {
           borderWidth:1,
           alignItems: 'center',
         }}
-        onPress={() => {setSelectedIndex(2); callback(2)}}//callback('May')
+        onPress={() => {setSelectedIndex(2); callback(2)}} //sends the callback with data  for annual mode back to durationhighlightschart
       >
         <Text>Yearly</Text>
       </TouchableOpacity>

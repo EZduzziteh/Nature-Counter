@@ -1,0 +1,1 @@
+export const ImagesAssets = {image1: require('./icons/image1.png'), image2: require('./icons/image2.png'), image3: require('./icons/image3.png')};

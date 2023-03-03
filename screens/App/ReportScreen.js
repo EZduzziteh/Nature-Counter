@@ -18,12 +18,9 @@ export default () => (
     
     <AchievementsSection />
     <BenefitsGainedSection />
-    <LoggedSymptomsSection />
     <DurationHighlightsChart />
     <ReportSharingSection/>
     <Tips />
-
-   
 
 
   </ScrollView>

@@ -1,33 +1,36 @@
-import React, { useState } from 'react';
+import React, {usestate }from 'react';
 import SectionHeaderRow from '../Row/SectionHeaderRow';
-import Badge from '../../components/Badge';
-import { Image, View } from 'react-native';
-import { fifteenMinNature, fiftyMinNature, thirtyMinNature } from '../../assets/badges';
+import Badge from '../Badges/Badge';
+import VisitsBadge  from '../Badges/VisitsBadge';
+import GoldBadge from '../Badges/GoldBadge';
+import SilverBadge from '../Badges/SilverBadge';
+import BronzeBadge from '../Badges/BronzeBadge';
+import PlatinumBadge from '../Badges/PlatinumBadge';
+import LevelBadge from '../Badges/LevelBadge';
+import { Image, View, ScrollView, Text } from 'react-native';
 import styles from './styles';
+import data from '../../SampleData/data.json';
 
 const AchievementsSection = () => {
-  const [text, setText] = useState('');
-
-  let image=<Image style={styles.badge} source={fifteenMinNature} />
-  if (text === '15') {
-    image = <Image style={styles.badge} source={fifteenMinNature} />;
-  } else if (text === '30') {
-    image = <Image style={styles.badge} source={thirtyMinNature} />;
-  } else if (text === '50') {
-    image = <Image style={styles.badge} source={fiftyMinNature} />;
-  }
+  const { mins } = data;
   return (
+    <>
+
+<SectionHeaderRow title="Achievements" />
+    <ScrollView horizontal={true}>
+    <View style={styles.evenRow}>
+    <LevelBadge />
+    <Badge />
+    <VisitsBadge />
+          {mins === 120 ? <GoldBadge /> : null}
+          {mins === 90 ? <SilverBadge /> : null}
+          {mins === 60 ? <BronzeBadge /> : null}
+          {mins === 30 ? <PlatinumBadge /> : null}
+        </View>
+        </ScrollView>  
+    
         
-            <View style={styles.evenRow}>     
-            <SectionHeaderRow title="Achievements" /> 
-            
-            <Image style ={image.style} source={image.source}></Image>
-            <Badge setText={setText} />    
-
-            <Image style={styles.badge} source={fifteenMinNature} />
-        <Image style={styles.badge} source={thirtyMinNature} />
-        <Image style={styles.badge} source={fiftyMinNature} />
-
-            </View>      );
+   
+    </>  );
 };
 export default AchievementsSection;
