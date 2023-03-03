@@ -1,4 +1,4 @@
-import React, {UseState} from 'react';
+import React, {UseState, useEffect} from 'react';
 import { View, Text } from 'native-base';
 import {VictoryBar, VictoryChart, VictoryGroup, VictoryTheme } from 'victory-native';
 import { green } from 'react-native-redash';
@@ -13,17 +13,55 @@ import DatePicker from '../../components/Selector/DatePicker';
 const data = Data;
 
 
+
 function DurationHighlightsChart ()  {
 
+
+    function updateCurrentInMinutes(index){
+        if(index==0){
+            var total = 0;
+            /*
+            data.days.forEach(day => {
+                total+=parseInt(day)
+            });*/
+    
+            setCurrentMinutes(total)
+        }else if(index==1){
+    
+            var total = 0;
+            /*
+            data.weeks.forEach(week => {
+                total+=parseInt(week)
+            });
+             */
+            setCurrentMinutes(total)
+        }else if(index==2){
+            var total = 0;
+            /*
+            data.months.forEach(month => {
+                total+=parseInt(month)
+            });
+            */
+            console.log(data.months[0])
+            setCurrentMinutes(total)
+        }
+    }
+
     const [dateRangeIndex, getDateRangeIndex] = React.useState(1);
-    const [dateRange, setDateRange] = React.useState('may 3 - june 5');
+    useEffect(() => {
+        updateCurrentInMinutes(dateRangeIndex);
+      }, [dateRangeIndex]); 
+
+
+    const [dateRange, setDateRange] = React.useState('Select a date to see the range');
     const goalInMinutes = data.currentGoal;
+    const [currentMinutesInRange, setCurrentMinutes] = React.useState(45);
 
 
     return <View elevation={5} style={styles.graphContainer}>
 
     {/*set the callbacks in our date picker and week selector ui elements*/}
-    <DatePicker callback = {setDateRange}/>
+    <DatePicker callback = {setDateRange} dateMode = {parseInt(dateRangeIndex)}/>
     <WeekButtongroup callback = {getDateRangeIndex}/>
 
 
@@ -32,7 +70,7 @@ function DurationHighlightsChart ()  {
 
     {/* set the data values in our overview section*/}
    
-     <OverviewSection goalInMinutes = {200} currentInMinutes = {69} />
+     <OverviewSection goalInMinutes = {goalInMinutes} currentInMinutes = {currentMinutesInRange} />
 
 
 
