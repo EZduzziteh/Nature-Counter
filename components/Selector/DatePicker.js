@@ -17,6 +17,8 @@ function onChange  (event, selectedDate)  {
     let dateString = tempDate.getDate()+'/'+(tempDate.getMonth()+1)+'/'+ tempDate.getFullYear();
     setText(dateString);
     setShow(false);
+
+    
     callback(tempDate.getDate() + ' - '+(parseInt(tempDate.getDate())+7));
     
 }

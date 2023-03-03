@@ -2,6 +2,10 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import styles from './styles';
 
+
+//This component will display various tips to the user and will pull them from a database 
+//status: in progress
+//
 const Tips = () => {
 
   return (
