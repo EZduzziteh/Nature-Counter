@@ -3,9 +3,11 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import data from '../../SampleData/data.json';
 
 const VisitsBadge = ({ children }) => {
+  //fetching data from json file
   const {visits} = data; 
 
   return (
+    //Rendering view component to display the visits badge and displaying no of visits inside text component
     <View style={styles.badgeContainer}>
       <View style={styles.circle}>
         <View style={styles.innerCircle}>
@@ -19,6 +21,7 @@ const VisitsBadge = ({ children }) => {
   );
 };
 
+//Style
 const styles = StyleSheet.create({
   badgeContainer: {
     alignItems: 'center',

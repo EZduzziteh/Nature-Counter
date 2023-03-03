@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 
 const GoldBadge = ({ children }) => {
   return (
+    //Rendering view component to display the gold badge
     <View style={styles.badgeContainer}>
       <View style={styles.circle}>
         <Image source={require('../../assets/icons/Gold.png')} style={styles.icon}  />
@@ -12,6 +13,7 @@ const GoldBadge = ({ children }) => {
   );
 };
 
+// Style
 const styles = StyleSheet.create({
   badgeContainer: {
     alignItems: 'center',

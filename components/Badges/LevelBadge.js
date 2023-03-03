@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 
 const LevelBadge = ({ children }) => {
   return (
+    //Rendering view component to display the level badge
     <View style={styles.badgeContainer}>
       <View style={styles.circle}>
         <View style={styles.innerCircle}>
@@ -15,6 +16,7 @@ const LevelBadge = ({ children }) => {
   );
 };
 
+//Style
 const styles = StyleSheet.create({
   badgeContainer: {
     alignItems: 'center',
