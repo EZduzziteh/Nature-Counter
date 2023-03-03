@@ -21,8 +21,9 @@ const Badge = ({ children }) => {
 
 const styles = StyleSheet.create({
   badgeContainer: {
-    alignItems: 'center',
+    
     justifyContent: 'center',
+    alignItems: 'center',
   },
   
   circle: {
