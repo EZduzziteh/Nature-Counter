@@ -119,9 +119,11 @@ const HomeScreen = ({ user, benefits, articles, userisLoading, usererrmsg, userd
           navigation={navigation}
         />
       <BenefitsGainedSection benefits={featuredBenefits} onPress={handleBenefitsPress} />
-      <ArticlesSection article={featureArticle} onPress={handleSeeAllArticlesPress} />
+      
     </SafeAreaView>
   );
+
+  //<ArticlesSection article={featureArticle} onPress={handleSeeAllArticlesPress} />
 
   /**
    * CURRENTLY UNSUPPORTED
