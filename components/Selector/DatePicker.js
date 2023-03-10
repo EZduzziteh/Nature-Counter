@@ -2,6 +2,8 @@ import React, {useCallback, useState} from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
+const axios = require('axios')
+
 //this component displays a calender that the user can use to select a date range.
 export default function DatePicker({callback}, {dateMode}) {
     const [date, setDate] = useState(new Date());
@@ -190,12 +192,28 @@ const showMode = (currentMode)=>{
     setMode(currentMode);
 }
 
-
+function getArticles(){
+   
+ 
+    console.log("getting test");
+    axios.get('http://10.0.2.2:3000/benefits', {
+                    
+    })
+    .then(function (response) {
+        console.log(JSON.stringify(response));
+    })
+    .catch(error => console.log(error));
+}
 
 return (
 
 <View>
     
+   
+        <View>
+            <Button  title = "Test server Add" onPress={()=>getArticles()}/>
+        </View>
+
         <View >
             <Button  title = {text} onPress = {()=>showMode('date')}/>
             

@@ -1,5 +1,5 @@
 import React, {UseState, useEffect} from 'react';
-import { View, Text } from 'native-base';
+import { View, Text, Button } from 'native-base';
 import {VictoryBar, VictoryChart, VictoryGroup, VictoryTheme } from 'victory-native';
 import { green } from 'react-native-redash';
 import WeekSelector from '../../components/Selector/WeekSelector';
@@ -59,6 +59,9 @@ function DurationHighlightsChart ()  {
 
 
     return <View elevation={5} style={styles.graphContainer}>
+        
+        
+
 
     {/*set the callbacks in our date picker and week selector ui elements*/}
     <DatePicker callback = {setDateRange} dateMode = {parseInt(dateRangeIndex)}/>
@@ -72,7 +75,7 @@ function DurationHighlightsChart ()  {
    
      <OverviewSection goalInMinutes = {goalInMinutes} currentInMinutes = {currentMinutesInRange} />
 
-
+    
 
         <VictoryChart 
                     domainPadding={20} 

@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "prod": "./bin/www",
-    "start": "nodemon ./bin/www",
-    "test": "jest"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "test": "jest --no-cache"
   },
   "dependencies": {
     "@derhuerst/query-overpass": "^2.0.0",
