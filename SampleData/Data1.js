@@ -3,7 +3,7 @@ const Data = {
     days:
     [
         //this represents time spent in nature(in minutes) per day of the currently selected week
-        {x: 'Mon', y:20},
+        {x: 'Mon', y:28},
         {x: 'Tue', y:10},
         {x: 'Wed', y:33},
         {x: 'Thur', y:30},
