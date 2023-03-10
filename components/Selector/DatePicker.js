@@ -194,15 +194,81 @@ const showMode = (currentMode)=>{
 
 function getArticles(){
    
- 
-    console.log("getting test");
-    axios.get('http://10.0.2.2:3000/benefits', {
-                    
-    })
+    /*
+    console.log("getting articles test");
+    
+        axios({
+            method: 'get',
+            url: 'http://10.0.2.2:3000/articles/',
+            responseType: 'json'
+          })
+        .then(function (response) {
+            console.log("articles response: "+ JSON.stringify(response));
+        })
+        .catch(error => console.log(error));
+    */
+    console.log("----");
+    console.log("----"); 
+    console.log("----");
+
+
+    console.log("getting benefits test");
+    
+    console.log("----");
+    axios({
+        method: 'get',
+        url: 'http://10.0.2.2:3000/benefits/',
+        responseType: 'json'
+      })
     .then(function (response) {
-        console.log(JSON.stringify(response));
+        console.log("benefits  entire response: "+response+ JSON.stringify(response.data));
+        console.log("----");
+        console.log("benefit 1 data "+response+ JSON.stringify(response.data[0]));
+        console.log("----"); 
+        console.log("benefit 1: "+JSON.stringify(response.data[0].benefit));
+        console.log("----");
+        console.log("benefit 2 data "+response+ JSON.stringify(response.data[1]));
+        console.log("----");
+        console.log("benefit 2: "+JSON.stringify(response.data[1].benefit));
     })
     .catch(error => console.log(error));
+
+
+    console.log("----");
+    console.log("----"); 
+    console.log("----");
+
+
+   
+    console.log("getting symptoms");
+    
+    console.log("----");
+    
+    axios({
+        method: 'get',
+        url: 'http://10.0.2.2:3000/symptoms',
+        responseType: 'json'
+      })
+    .then(function (response) {
+        console.log("symptoms response: "+ JSON.stringify(response.data));
+    })
+    .catch(error => console.log(error));
+
+/*
+
+
+app.use('/userdetails', userRouter);
+app.use('/usergoals', goalRouter);
+app.use('/symptoms', symptomRouter);
+
+
+*/
+
+
+
+
+   
+
 }
 
 return (

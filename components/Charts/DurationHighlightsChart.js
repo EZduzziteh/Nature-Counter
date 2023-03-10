@@ -18,32 +18,36 @@ function DurationHighlightsChart ()  {
 
 
     function updateCurrentInMinutes(index){
+        console.log("updating current in minutes");
         if(index==0){
+            console.log("weekly");
             var total = 0;
-            /*
-            data.days.forEach(day => {
-                total+=parseInt(day)
-            });*/
+            data.days.forEach(day=>{
+                total+=day.y;
+            })
     
             setCurrentMinutes(total)
+            setCurrentGoal(data.currentGoal);
         }else if(index==1){
-    
+            console.log("monthly");
             var total = 0;
-            /*
+            
             data.weeks.forEach(week => {
-                total+=parseInt(week)
+                total+=week.y;
             });
-             */
+             
             setCurrentMinutes(total)
+            setCurrentGoal(data.currentMonthlyGoal);
         }else if(index==2){
+            console.log("annual");
             var total = 0;
-            /*
+            
             data.months.forEach(month => {
-                total+=parseInt(month)
+                total+=month.y;
             });
-            */
-            console.log(data.months[0])
+            
             setCurrentMinutes(total)
+            setCurrentGoal(data.currentAnnualGoal);
         }
     }
 
@@ -53,8 +57,10 @@ function DurationHighlightsChart ()  {
       }, [dateRangeIndex]); 
 
 
+    const [goalInMinutes, setCurrentGoal] = React.useState(data.currentGoal);
+
     const [dateRange, setDateRange] = React.useState('Select a date to see the range');
-    const goalInMinutes = data.currentGoal;
+    
     const [currentMinutesInRange, setCurrentMinutes] = React.useState(45);
 
 
