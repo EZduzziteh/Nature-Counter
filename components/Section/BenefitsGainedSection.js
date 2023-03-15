@@ -60,8 +60,8 @@ const getImage = (image) => {
       case "image2":
         return ImagesAssets.image2
         break;
-        case "image3":
-          return ImagesAssets.image3
+        case "arrow":
+          return ImagesAssets.arrow
           break;
 
       default:
@@ -119,17 +119,20 @@ const BenefitsGainedSection = () => {
       </ModalPoup>
 
       {Benefits.benefits.map((item, i) => (
-      <TouchableOpacity key={i} style={{flexDirection: 'row', backgroundColor: '#fff', marginBottom: 3, height: 80}} 
-          onPress={() => {setVisible(true); setTitle(item.title); setText(item.text);setLearnMore(item.learnMoreURL);setNextButton(item.nextButton)}}>
-					<View style={[styles.marginVertical, {width: 75}]}>
-						<View style={{borderWidth: 0, borderColor: '#ececec', padding: 5, borderRadius: 15}}>
-            <Image style = {styles.imageView} source={getImage(item.image)} />
-						</View>
-					</View>
-					<View style={{flexGrow: 1, flexShrink: 1, alignSelf: 'center'}}>
-						<Text style={{fontSize: 15}}>       {item.title}</Text>
-					</View>
-				</TouchableOpacity>
+      <TouchableOpacity key={i} style={{borderColor: 'green',borderWidth: 2, borderRadius:10, overflow: 'hidden',flexDirection: 'row', overflow: 'hidden', backgroundColor: '#fff', marginLeft: 10, marginRight: 10, marginBottom: 6, height: 50, background: 'transparent'}} 
+      onPress={() => {setVisible(true); setTitle(item.title); setText(item.text);setLearnMore(item.learnMoreURL);setNextButton(item.nextButton)}}>
+      <View style={{borderColor: 'green', borderRadius:20, overflow: 'hidden'}}>
+      <View style={{width: 40, height:40 , marginLeft: 10}} >
+        <Image style= {{flex:1 , width: undefined, height: undefined}} source={getImage(item.image)} />
+        </View>
+      </View>
+      <View style={{flexGrow: 1, flexShrink: 1, marginLeft: -20,alignSelf: 'center'}}>
+        <Text style={{fontSize: 15,fontWeight: '500'}}>       {item.title}</Text>
+      </View>
+      <View style={{width: 20, height:20 , alignSelf: 'center',marginRight: 5}} >
+        <Image style= {{flex:1 , width: undefined, height: undefined}} source={getImage('arrow')} />
+        </View>
+  </TouchableOpacity>
       ))}
     </View>
   );
