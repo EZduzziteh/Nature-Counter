@@ -14,8 +14,8 @@ function WeekButtonGroup ({callback})  {
           flex: 1,
           backgroundColor: selectedIndex === 0 ? '#299C40' : '#71E588',
           padding: 10,
-          borderBottomLeftRadius: 10,
-          borderTopLeftRadius: 10,
+          borderBottomLeftRadius: 100,
+          borderTopLeftRadius: 100,
           borderStyle:'solid',
           borderColor:'rgb(100, 100, 100)',
           borderWidth:1,
@@ -47,8 +47,8 @@ function WeekButtonGroup ({callback})  {
           
           borderStyle:'solid',
           borderColor:'rgb(100, 100, 100)',
-          borderBottomRightRadius: 10,
-          borderTopRightRadius: 10,
+          borderBottomRightRadius: 100,
+          borderTopRightRadius: 100,
           borderWidth:1,
           alignItems: 'center',
         }}

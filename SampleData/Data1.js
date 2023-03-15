@@ -77,7 +77,11 @@ const Data = {
     currentMonthlyGoal: 300, //goal in minutes for the month
     currentAnnualGoal: 1000,//goal in minutes for the year
     
-
+    tips:[
+        {id: 100, description:"Spending time in nature has both physical and mental health benefits."},
+        {id: 200, description:"A US study showed that in places that have more greenery and nature, residents reported a lowered level of depression symptoms."},
+        {id: 300, description:"This is a placeholder Tip"}
+    ]
     
 
 }

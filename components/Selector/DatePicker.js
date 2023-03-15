@@ -192,6 +192,7 @@ const showMode = (currentMode)=>{
     setMode(currentMode);
 }
 
+//test function to get
 function getArticles(){
    
     /*
@@ -215,21 +216,23 @@ function getArticles(){
     console.log("getting benefits test");
     
     console.log("----");
+
+    //make post request with axios to our server
+    //10.0.2.2 is basically localhost of the android emulated device
+    //3000 is the port the server is running off of
+    //benefits is a route defined in app.js
     axios({
         method: 'get',
-        url: 'http://10.0.2.2:3000/benefits/',
-        responseType: 'json'
+        url: 'http://10.0.2.2:3000/user_goals_views',
+        responseType: 'json',
+        headers: {'authorization': 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImQwNTU5YzU5MDgzZDc3YWI2NDUxOThiNTIxZmM4ZmVmZmVlZmJkNjIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vbmF0dXJlLWNvdW50ZXItOTA4OGIiLCJhdWQiOiJuYXR1cmUtY291bnRlci05MDg4YiIsImF1dGhfdGltZSI6MTY3NDc5MTMyMCwidXNlcl9pZCI6IlNBeDB4dTF5Z2VXUzc1Y1FsSFVwbm1zUG9XNTMiLCJzdWIiOiJTQXgweHUxeWdlV1M3NWNRbEhVcG5tc1BvVzUzIiwiaWF0IjoxNjc0NzkxMzIwLCJleHAiOjE2NzQ3OTQ5MjAsImVtYWlsIjoiYW5kcmV3QHRlc3QuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImFuZHJld0B0ZXN0LmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.TJn3gWMea9IvM2837TuWUkXeCNGLSa4sSB_7tPa9Xjlf9Erf6ljG0iypehPrebrOfHaNXvoMjh36uUOLQLyQFboKjUD_7yM6Ke713PKHgvo5OsdN1mHd6gkZZc14AZJ6pPuNGsnzseRrb8P2UGy8wJT68eTLQNmBlYIKOzHvsjeTLJ2vDVzw5ADXD05XBJz_V10iOsdvZ9HNbgN_S5WnLxy98SCQ0RviXIX4dz0YuapqINduoE9inAIbC1U-hiwwDkcTcA_iHz44CfY7Ylv5wGBsgO9zSNVsgLyZqd5j54PbyYrMJBsT1ilcOqghEwNG4JKtT2iN32dY7f4IwlWgtQ'},
+        params: {
+            //ID: 12345
+        },
       })
     .then(function (response) {
-        console.log("benefits  entire response: "+response+ JSON.stringify(response.data));
-        console.log("----");
-        console.log("benefit 1 data "+response+ JSON.stringify(response.data[0]));
-        console.log("----"); 
-        console.log("benefit 1: "+JSON.stringify(response.data[0].benefit));
-        console.log("----");
-        console.log("benefit 2 data "+response+ JSON.stringify(response.data[1]));
-        console.log("----");
-        console.log("benefit 2: "+JSON.stringify(response.data[1].benefit));
+        //return the entire response data (all available benefits from database)
+        console.log("benefits  entire response: "+response.data+ JSON.stringify(response));
     })
     .catch(error => console.log(error));
 
@@ -240,19 +243,7 @@ function getArticles(){
 
 
    
-    console.log("getting symptoms");
-    
-    console.log("----");
-    
-    axios({
-        method: 'get',
-        url: 'http://10.0.2.2:3000/symptoms',
-        responseType: 'json'
-      })
-    .then(function (response) {
-        console.log("symptoms response: "+ JSON.stringify(response.data));
-    })
-    .catch(error => console.log(error));
+   
 
 /*
 
@@ -277,6 +268,7 @@ return (
     
    
         <View>
+            {/*#TODO SASHA REMEMBER TO REMOVE THIS ITS JUST FOR TESTING SERVER AND DATABASE CONNECTIONS */}
             <Button  title = "Test server Add" onPress={()=>getArticles()}/>
         </View>
 

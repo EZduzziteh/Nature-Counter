@@ -20,38 +20,47 @@ function DurationHighlightsChart ()  {
     function updateCurrentInMinutes(index){
         console.log("updating current in minutes");
         if(index==0){
+           
             console.log("weekly");
+            
             var total = 0;
+             //total up weekly hours
             data.days.forEach(day=>{
                 total+=day.y;
             })
     
+            //set weekly hours to display to screen
             setCurrentMinutes(total)
+            //update goal to be weekly
             setCurrentGoal(data.currentGoal);
         }else if(index==1){
             console.log("monthly");
             var total = 0;
-            
+            //total up monthly hours
             data.weeks.forEach(week => {
                 total+=week.y;
             });
-             
+             //set monthly hours to display on screen
             setCurrentMinutes(total)
+            //update goal to be monthly
             setCurrentGoal(data.currentMonthlyGoal);
         }else if(index==2){
             console.log("annual");
             var total = 0;
-            
+            //total up yearly hours
             data.months.forEach(month => {
                 total+=month.y;
             });
-            
+            //set annual hours to display on screen
             setCurrentMinutes(total)
+            //update goal to be annually
             setCurrentGoal(data.currentAnnualGoal);
         }
     }
 
+    //date range index represents the "mode" we are in, weekly=0, monthly=1 or annual=2
     const [dateRangeIndex, getDateRangeIndex] = React.useState(1);
+        //use effect gets called every time our date range index gets updated
     useEffect(() => {
         updateCurrentInMinutes(dateRangeIndex);
       }, [dateRangeIndex]); 
