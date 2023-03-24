@@ -8,6 +8,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginTop: 16,
   },
+  SectionHeaderTitle:{
+    fontSize: 16,
+  },
+  HeaderImage:{
+  },
   evenRow: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
@@ -23,7 +28,7 @@ const styles = StyleSheet.create({
   },
   graphContainer:{
     margin: 2,
-    backgroundColor:'rgb(240, 240, 240)',
+    backgroundColor:'#FFFFFF',
     borderStyle:'solid',
     borderColor:'rgb(100, 100, 100)',
     borderWidth: 1,
@@ -59,6 +64,9 @@ const styles = StyleSheet.create({
     margin: 10,
     color: '#FFFFFF',
     padding: 5,
+  },
+  Reports:{
+    backgroundColor: "#FFFFFF",
   }
 });
 

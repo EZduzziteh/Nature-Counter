@@ -1,8 +1,9 @@
-import { Text, TouchableOpacity, Image } from 'react-native';
+import { Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import React from 'react';
 import styled from 'styled-components/native';
 import { THEME_GREEN } from '../Utilities/Constants';
-import { LESS_DEPRESSION_INACTIVE } from '../../assets/icons';
+import { TextSize } from 'victory-native';
+import styles from '../Section/styles';
 const SectionHeader = styled.View`
   flex-direction: row;
   justify-content: space-between;
@@ -12,6 +13,7 @@ const SectionHeader = styled.View`
 const SectionLeft = styled.View`
   margin-left: 10px;
   flex-direction: row;
+  font-size: 200px;
 `;
 
 const SectionRight = styled.View`
@@ -25,7 +27,7 @@ const SeeAll = styled.Text`
 const SectionHeaderRow = ({ title, onPress  }) => (
   <SectionHeader>
     <SectionLeft>
-      <Text>{title}</Text>
+      <Text style ={styles.SectionHeaderTitle}>{title}</Text>
     </SectionLeft>
     <SectionRight>
       <TouchableOpacity onPress={onPress}>

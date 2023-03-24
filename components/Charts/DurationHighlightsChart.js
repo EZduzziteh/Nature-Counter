@@ -77,10 +77,10 @@ function DurationHighlightsChart ()  {
     const [currentMinutesInRange, setCurrentMinutes] = React.useState(45);
 
 
-    return <View >
+    return <View style = {styles.backgroundColor}>
         
     <View style={[ styles.container,{ flexDirection: 'row',}, ]}>
-        <Image source={require('../../assets/icons/durationhighlightslogo.png')}></Image>
+        <Image style = {styles.HeaderImage} source={require('../../assets/icons/durationhighlightslogo.png')}></Image>
         <SectionHeaderRow title="Duration Highlights" />
     </View>
     {/*set the callbacks in our date picker and week selector ui elements*/}
