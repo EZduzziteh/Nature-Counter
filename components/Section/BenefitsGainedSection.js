@@ -127,7 +127,9 @@ const BenefitsGainedSection = () => {
         </View>
       </ModalPoup>
 
-      {Benefits.benefits.map((item, i) => (
+      {Benefits.benefits
+      .filter(({visible}) => visible === true)
+      .map((item, i) => (
       <TouchableOpacity key={i} style={{borderColor: 'green',borderWidth: 2, borderRadius:10, overflow: 'hidden',flexDirection: 'row', overflow: 'hidden', backgroundColor: '#fff', marginLeft: 10, marginRight: 10, marginBottom: 6, height: 50, background: 'transparent'}} 
       onPress={() => {setVisible(true); setTitle(item.title); setText(item.text);setLearnMore(item.learnMoreURL);setNextButton(item.nextButton)}}>
       <View style={{borderColor: 'green', borderRadius:20, overflow: 'hidden'}}>
