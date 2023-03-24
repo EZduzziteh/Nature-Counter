@@ -1,5 +1,6 @@
 import React, {UseState, useEffect} from 'react';
 import { View, Text, Button } from 'native-base';
+import {Image} from 'react-native'
 import {VictoryBar, VictoryChart, VictoryGroup, VictoryTheme } from 'victory-native';
 import { green } from 'react-native-redash';
 import WeekSelector from '../../components/Selector/WeekSelector';
@@ -8,6 +9,9 @@ import Data from '../../SampleData/Data1'
 import styles from '../Section/styles';
 import OverviewSection from '../Section/OverviewSection'
 import DatePicker from '../../components/Selector/DatePicker';
+import SectionHeaderRow from '../Row/SectionHeaderRow';
+
+
 
 
 const data = Data;
@@ -73,16 +77,17 @@ function DurationHighlightsChart ()  {
     const [currentMinutesInRange, setCurrentMinutes] = React.useState(45);
 
 
-    return <View elevation={5} style={styles.graphContainer}>
+    return <View >
         
-        
-
-
+    <View style={[ styles.container,{ flexDirection: 'row',}, ]}>
+        <Image source={require('../../assets/icons/durationhighlightslogo.png')}></Image>
+        <SectionHeaderRow title="Duration Highlights" />
+    </View>
     {/*set the callbacks in our date picker and week selector ui elements*/}
     <DatePicker callback = {setDateRange} dateMode = {parseInt(dateRangeIndex)}/>
     <WeekButtongroup callback = {getDateRangeIndex}/>
 
-
+    <View elevation={5} style={styles.graphContainer}>
     <Text style={styles.dateRange}>{dateRange}</Text>
 
 
@@ -103,7 +108,9 @@ function DurationHighlightsChart ()  {
                             data = {dateRangeIndex===0?data.days:dateRangeIndex===1?data.weeks:data.months}
                             style = {{
                                        data:{
-                                            fill:'green',
+                                            fill:'#459F5E',
+                                            color: '#94D39E',
+                                            backgroundColor: '#FFFFFF',
                                         },
                                     }}
                 
@@ -111,8 +118,8 @@ function DurationHighlightsChart ()  {
                 />
             </VictoryGroup>
         </VictoryChart>
-
         </View>
+    </View>
 };
 
 export default DurationHighlightsChart;

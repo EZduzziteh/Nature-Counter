@@ -8,7 +8,7 @@ const OverviewSection = (data) => {
   return (
     <View style={styles.overviewContainer}>
       <ReportPercentageCard title = "percent of goal achieved" percentage = {Math.round(data.currentInMinutes/data.goalInMinutes*100)} />
-      <ReportOverviewCard title="Minutes in Nature" primary={data.currentInMinutes} secondary={data.goalInMinutes} /> 
+      <ReportOverviewCard title="Total Duration" primary={data.currentInMinutes} secondary={data.goalInMinutes} /> 
     </View>
   );
 };

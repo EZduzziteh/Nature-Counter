@@ -1,8 +1,10 @@
 
 import React from 'react';
-import { Linking } from 'react-native';
+import { Linking, } from 'react-native';
 import Benefits from "../../SampleData/Benefits.json";
 import { ImagesAssets } from '../../assets/ImagesAssets.js';
+import SectionHeaderRow from '../Row/SectionHeaderRow';
+
 
 import {
   View,
@@ -78,7 +80,14 @@ const BenefitsGainedSection = () => {
   const [nextButton, setNextButton] = React.useState(false);
   const link = learnMore
   return (
+    <View>
+    <View style={[ styles.container,{ flexDirection: 'row',}, ]}>
+    <Image source={require('../../assets/icons/TopBenefitsLogo.png')}></Image>
+    <SectionHeaderRow title="Estimated Benefits"/>
+    </View>
+
     <View style={{flex: 1, top: 0, justifyContent: 'center', alignItems: 'center'}}>
+     
       <ModalPoup visible={visible}>
         <View style={{alignItems: 'center'}}>
           <View style={styles.header}>
@@ -134,6 +143,7 @@ const BenefitsGainedSection = () => {
         </View>
   </TouchableOpacity>
       ))}
+    </View>
     </View>
   );
 };

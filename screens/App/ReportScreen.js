@@ -13,7 +13,7 @@ export default () => (
   
 
   
-  <ScrollView>
+  <ScrollView >
     
     <AchievementsSection />
     <BenefitsGainedSection />

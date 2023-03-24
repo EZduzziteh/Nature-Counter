@@ -33,10 +33,32 @@ console.log(process.env.FIREBASE_KEY);
 console.log(process.env.AZURE_DB_URL);
 console.log(process.env.TEST_USER_BEARER_TOKEN);
 
+let mongo = process.env.MONGO_DB_URL;
+
+mongo = mongo.slice(0, -1); //remove the last character of the string
+mongo = mongo.substring(1); //remove first character of the string
+
+process.env.MONGO_DB_URL = mongo;
+
+let azure = process.env.AZURE_DB_URL;
+azure = azure.slice(0, -1); //remove the last character of the string
+azure = azure.substring(1); //remove first character of the string
+
+process.env.AZURE_DB_URL = azure;
+
+let userToken = process.env.TEST_USER_BEARER_TOKEN;
+userToken  = userToken .slice(0, -1); //remove the last character of the string
+userToken  = userToken .substring(1); //remove first character of the string
+
+process.env.TEST_USER_BEARER_TOKEN = userToken;
+
+let firebase = process.env.FIREBASE_KEY;
+firebase = firebase.slice(0, -1); //remove the last character of the string
+firebase = firebase.substring(1); //remove first character of the string
+
+process.env.FIREBASE_KEY = firebase;
+
 let url = process.env.MONGO_DB_URL;
-url = url.slice(0, -1); //remove the last character of the string
-url = url.substring(1); //remove first character of the string
-console.log("hi");
 console.log(url);
 
 //link to my own personal db
@@ -103,7 +125,23 @@ app.use('/natureAreas', nearParkRouter);
 app.use('/journal', journalRouter);
 app.use('/favoriteLoc', favoriteLocRouter);
 
+/*
 
+        console.log("----");
+        //return benefit 1 data only
+        console.log("benefit 1 data "+response+ JSON.stringify(response.data[0]));
+        console.log("----"); 
+          //return the benefits name for benefit 1
+        console.log("benefit 1: "+JSON.stringify(response.data[0].benefit));
+        console.log("----");
+        //return benefit 2 data only
+        console.log("benefit 2 data "+response+ JSON.stringify(response.data[1]));
+        console.log("----");
+        //return the benefits name for beenfit 2
+        console.log("benefit 2: "+JSON.stringify(response.data[1].benefit));
+
+
+*/
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

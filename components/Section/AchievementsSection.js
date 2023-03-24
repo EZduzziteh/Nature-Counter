@@ -20,7 +20,12 @@ const AchievementsSection = () => {
   return (
     <>
 
-<SectionHeaderRow title="Achievements" />
+
+<View style={[ styles.container,{ flexDirection: 'row',}, ]}>
+<Image source={require('../../assets/icons/topAchievementsLogo.png')}></Image>
+<SectionHeaderRow title="Top Achievements" />
+</View>
+
     <ScrollView horizontal={true}>
     <View style={styles.evenRow}>
     <LevelBadge />

@@ -1,8 +1,31 @@
 import React, {useCallback, useState} from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button,TouchableOpacity } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { green } from 'react-native-redash';
 
 const axios = require('axios')
+
+const styles = StyleSheet.create({
+    calender: {
+      width: '100%',
+      height: 45,
+      flexDirection: 'row',
+      borderRadius: 50,
+      marginLeft: 10,
+      marginTop: 10,
+      
+    },
+    calenderButton:{
+        backgroundColor: '#FFFFFF',
+        padding: 10,
+        borderRadius: 50,
+        borderStyle:'solid',
+        borderColor:'#459F5E',
+        borderWidth:1,
+    }
+  });
+
+
 
 //this component displays a calender that the user can use to select a date range.
 export default function DatePicker({callback}, {dateMode}) {
@@ -181,7 +204,7 @@ function onChange  (event, selectedDate)  {
     */
     
     setShow(false)
-    dateString = tempDate.getDate()+'/'+(tempDate.getMonth()+1)+'/'+ tempDate.getFullYear()
+    dateString = (convertMonthToString(tempDate.getMonth()+1))+' '+tempDate.getDate();
     setText(dateString);
     callback((convertMonthToString(tempDate.getMonth()+1))+" "+tempDate.getDate() + ' - '+(parseInt(tempDate.getDate())+7));
     
@@ -225,7 +248,9 @@ function getArticles(){
         method: 'get',
         url: 'http://10.0.2.2:3000/user_goals_views',
         responseType: 'json',
-        headers: {'authorization': 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImQwNTU5YzU5MDgzZDc3YWI2NDUxOThiNTIxZmM4ZmVmZmVlZmJkNjIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vbmF0dXJlLWNvdW50ZXItOTA4OGIiLCJhdWQiOiJuYXR1cmUtY291bnRlci05MDg4YiIsImF1dGhfdGltZSI6MTY3NDc5MTMyMCwidXNlcl9pZCI6IlNBeDB4dTF5Z2VXUzc1Y1FsSFVwbm1zUG9XNTMiLCJzdWIiOiJTQXgweHUxeWdlV1M3NWNRbEhVcG5tc1BvVzUzIiwiaWF0IjoxNjc0NzkxMzIwLCJleHAiOjE2NzQ3OTQ5MjAsImVtYWlsIjoiYW5kcmV3QHRlc3QuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImFuZHJld0B0ZXN0LmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.TJn3gWMea9IvM2837TuWUkXeCNGLSa4sSB_7tPa9Xjlf9Erf6ljG0iypehPrebrOfHaNXvoMjh36uUOLQLyQFboKjUD_7yM6Ke713PKHgvo5OsdN1mHd6gkZZc14AZJ6pPuNGsnzseRrb8P2UGy8wJT68eTLQNmBlYIKOzHvsjeTLJ2vDVzw5ADXD05XBJz_V10iOsdvZ9HNbgN_S5WnLxy98SCQ0RviXIX4dz0YuapqINduoE9inAIbC1U-hiwwDkcTcA_iHz44CfY7Ylv5wGBsgO9zSNVsgLyZqd5j54PbyYrMJBsT1ilcOqghEwNG4JKtT2iN32dY7f4IwlWgtQ'},
+        headers: {
+
+        },
         params: {
             //ID: 12345
         },
@@ -266,14 +291,18 @@ return (
 
 <View>
     
-   
+   {/*#TODO SASHA REMEMBER TO REMOVE THIS ITS JUST FOR TESTING SERVER AND DATABASE CONNECTIONS {
         <View>
-            {/*#TODO SASHA REMEMBER TO REMOVE THIS ITS JUST FOR TESTING SERVER AND DATABASE CONNECTIONS */}
+            
             <Button  title = "Test server Add" onPress={()=>getArticles()}/>
         </View>
+        <Button  color = '#459F5E' title = {text}  onPress = {()=>showMode('date')} />
+        }*/}
+    
 
-        <View >
-            <Button  title = {text} onPress = {()=>showMode('date')}/>
+        <View style={styles.calender}>
+            <TouchableOpacity style = {styles.calenderButton} onPress={() =>showMode('date') }><Text>{text}</Text></TouchableOpacity>
+            
             
         </View>
         {show &&(

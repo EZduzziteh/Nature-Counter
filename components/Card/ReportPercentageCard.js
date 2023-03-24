@@ -11,7 +11,8 @@ const ReportPercentageCard = ({ percentage }) => (
    
     <View style={styles.stats}>
       
-      <Benefit label={percentage+ '%'} source={MEMORY_ACTIVE} />
+      <Image source = {require("../../assets/icons/clockicon.png")}></Image>
+      <Text style = {styles.percentageText}>{percentage+ '%'}</Text>
       
     </View>
   </View>

@@ -50,12 +50,15 @@ const styles = StyleSheet.create({
 
   },
   tipsContainer:{
-    backgroundColor: 'rgb(82, 59, 104)',
-    color: 'rgb(0, 204, 102)',
+    backgroundColor: '#3A375F',
+    color: '#94D39E',
+    borderRadius: 5,
+    margin: 10
   },
   tipsText:{
-    
-    color: 'rgb(102, 102, 153)',
+    margin: 10,
+    color: '#FFFFFF',
+    padding: 5,
   }
 });
 

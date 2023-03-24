@@ -24,6 +24,10 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: DARK_GREY,
   },
+  percentageText:{
+    color: "#459F5E",
+    fontSize: 18,
+  },
   overviewCard: {
     backgroundColor: '#fff',
     paddingHorizontal: 30,
@@ -66,11 +70,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   primary: {
-    fontSize: 36,
+    fontSize: 24,
   },
   secondary: {
     fontSize: 24,
     marginLeft: 10,
+    color: "#707070"
   },
   card: {
     backgroundColor: '#fff',
