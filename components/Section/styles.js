@@ -1,4 +1,4 @@
-import { Left } from 'native-base';
+import { Left, Right } from 'native-base';
 import { StyleSheet} from 'react-native';
 import { Colors } from 'react-native-paper';
 
@@ -55,15 +55,24 @@ const styles = StyleSheet.create({
 
   },
   tipsContainer:{
-    backgroundColor: '#3A375F',
-    color: '#94D39E',
-    borderRadius: 5,
-    margin: 10
+    backgroundColor: '#3A375F', 
+    color: 'rgb(0, 204, 102)', 
+    width: 390, 
+    padding:10,
+    borderRadius:13,
   },
   tipsText:{
     margin: 10,
     color: '#FFFFFF',
     padding: 5,
+    fontSize: 15,
+  },
+  tipImage:{
+    marginLeft: 200,
+  },
+  text:{
+    color:'#94D39E',
+    fontSize:20
   },
   Reports:{
     backgroundColor: "#FFFFFF",

@@ -7,12 +7,13 @@ const Badge = ({ children }) => {
   //fetching data from json file
   var {mins} = data; 
 
-  // get the current day of the week
+  // get the current day of the week and current hour in 24 hour format
   const today = Moment().format('dddd'); 
-  console.log(today);
+  const hour = Moment().format('H');
+  const minutes = Moment().format('m');
 
-  // reset the value of {mins} to 0 on Sunday
-  if (today == 'Sunday') {
+  // reset the value of {mins} to 0 on Sunday at 12:00 pm
+  if (today === 'Sunday' && hour === '12' && minutes === '00') {
     mins = 0;
   }
 

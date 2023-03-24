@@ -20,7 +20,6 @@ export default () => (
     <BenefitsGainedSection />
     <DurationHighlightsChart />
     <Tips />
-    <Image style={{alignSelf:'center',alignItems:'center',justifyContent:'center'}} source={require('../../assets/Frame26.png')}/> 
     <ReportSharingSection/>
 
   </ScrollView>

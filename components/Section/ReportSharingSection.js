@@ -175,7 +175,7 @@ function ReportSharingSection() {
 
   return (
     <ScrollView>
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 10 }}>
       <Image style={{alignSelf:'center',alignItems:'center',justifyContent:'center'}} source={require('../../assets/Frame26.png')}/>
       <Button onPress={() => console.log('change profile picture')} style={styles.Button}>
         {/* #TODO figure out why this doesnt work<Image source={LOGIN_ICON} />*/}
