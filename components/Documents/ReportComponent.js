@@ -1,23 +1,23 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import Data1 from '../../SampleData/Data1';
-//import * as Print from 'expo-print';
-
+import Data1 from '../../SampleData/Data3';
+// import * as Print from 'expo-print';
 function ReportComponent () {
   
 const data = Data1;
 
-  /*const handlePrint = async () => {
+  const handlePrint = async () => {
     try {
       // Print the component as a PDF document
       const pdf = await Print.printToFileAsync({
         html: '<html><body><h1>Sample Report</h1><p>Date: 01/01/2022</p><p>Amount Spent: $100</p></body></html>',
       });
+      console.log(" handlePrint pdf ", pdf)
       await Print.printAsync({ uri: pdf.uri });
     } catch (error) {
       console.log('Error printing report:', error);
     }
-  };*/
+  }
 
   return (
 <View style={styles.page}>
@@ -72,218 +72,218 @@ const data = Data1;
 <Text>{data.days[0].y}</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>Central Park</Text>
+<Text>Central Park</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>5 hours</Text>
+<Text>5 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>40%</Text>
+<Text>40%</Text>
 </View>
 </View>
 <View style={styles.row}>
 <View style={styles.column}>
-<Text style={styles.column}>2/2/2023</Text>
+<Text>2/2/2023</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>2:00 PM</Text>
+<Text>2:00 PM</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>1 hour</Text>
+<Text>1 hour</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>Library</Text>
+<Text>Library</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>4 hours</Text>
+<Text>4 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>25%</Text>
+<Text>25%</Text>
 </View>
 </View>
 <View style={styles.row1}>
 <View style={styles.column}>
-<Text style={styles.column}>2/3/2023</Text>
+<Text>2/3/2023</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>9:00 AM</Text>
+<Text>9:00 AM</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>3 hours</Text>
+<Text>3 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>Gym</Text>
+<Text>Gym</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>6 hours</Text>
+<Text>6 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>50%</Text>
+<Text>50%</Text>
 </View>
 </View>
 <View style={styles.row}>
 <View style={styles.column}>
-<Text style={styles.column}>2/3/2023</Text>
+<Text>2/3/2023</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>9:00 AM</Text>
+<Text>9:00 AM</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>3 hours</Text>
+<Text>3 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>Gym</Text>
+<Text>Gym</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>6 hours</Text>
+<Text>6 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>50%</Text>
+<Text>50%</Text>
 </View>
 </View>
 <View style={styles.row1}>
 <View style={styles.column}>
-<Text style={styles.column}>2/3/2023</Text>
+<Text>2/3/2023</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>9:00 AM</Text>
+<Text>9:00 AM</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>3 hours</Text>
+<Text>3 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>Gym</Text>
+<Text>Gym</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>6 hours</Text>
+<Text>6 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>50%</Text>
+<Text>50%</Text>
 </View>
 </View>
 <View style={styles.row}>
 <View style={styles.column}>
-<Text style={styles.column}>2/3/2023</Text>
+<Text>2/3/2023</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>9:00 AM</Text>
+<Text>9:00 AM</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>3 hours</Text>
+<Text>3 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>Gym</Text>
+<Text>Gym</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>6 hours</Text>
+<Text>6 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>50%</Text>
+<Text>50%</Text>
 </View>
 </View>
 <View style={styles.row1}>
 <View style={styles.column}>
-<Text style={styles.column}>2/3/2023</Text>
+<Text>2/3/2023</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>9:00 AM</Text>
+<Text>9:00 AM</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>3 hours</Text>
+<Text>3 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>Gym</Text>
+<Text>Gym</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>6 hours</Text>
+<Text>6 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>50%</Text>
+<Text>50%</Text>
 </View>
 </View>
 <View style={styles.row}>
 <View style={styles.column}>
-<Text style={styles.column}>2/3/2023</Text>
+<Text>2/3/2023</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>9:00 AM</Text>
+<Text>9:00 AM</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>3 hours</Text>
+<Text>3 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>Gym</Text>
+<Text>Gym</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>6 hours</Text>
+<Text>6 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>50%</Text>
+<Text>50%</Text>
 </View>
 </View>
 <View style={styles.row1}>
 <View style={styles.column}>
-<Text style={styles.column}>2/3/2023</Text>
+<Text>2/3/2023</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>9:00 AM</Text>
+<Text>9:00 AM</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>3 hours</Text>
+<Text>3 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>Gym</Text>
+<Text>Gym</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>6 hours</Text>
+<Text>6 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>50%</Text>
+<Text>50%</Text>
 </View>
 </View>
 <View style={styles.row}>
 <View style={styles.column}>
-<Text style={styles.column}>2/3/2023</Text>
+<Text>2/3/2023</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>9:00 AM</Text>
+<Text>9:00 AM</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>3 hours</Text>
+<Text>3 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>Gym</Text>
+<Text>Gym</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>6 hours</Text>
+<Text>6 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>50%</Text>
+<Text>50%</Text>
 </View>
 </View>
 <View style={styles.row1}>
 <View style={styles.column}>
-<Text style={styles.column}>2/3/2023</Text>
+<Text>2/3/2023</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>9:00 AM</Text>
+<Text>9:00 AM</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>3 hours</Text>
+<Text>3 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>Gym</Text>
+<Text>Gym</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>6 hours</Text>
+<Text>6 hours</Text>
 </View>
 <View style={styles.column}>
-<Text style={styles.column}>50%</Text>
+<Text>50%</Text>
 </View>
 </View>
 
 </View>
-
+<Button onPress={handlePrint} title='generate report'><Text>Down</Text></Button>
 </View>
   );
 
