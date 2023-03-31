@@ -1,20 +1,14 @@
 import React, { useState } from 'react';
 import { Image, ScrollView, ToastAndroid } from 'react-native';
 import { View, Text, TouchableOpacity, Button, CheckBox } from 'native-base'; 
-import { BLOOD_PRESSURE_ACTIVE, MEMORY_ACTIVE } from '../../assets/icons';
-import { LOGIN_ICON } from '../../assets/Frame26.png';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
-
+import NC_APP from '../../assets/icons/Share-Illustration.svg'
 import styles from '../../components/Section/styles';
-import ReportComponent from '../Documents/ReportComponent'
-
 // Permissions and Plat form Variables for OS Validations and Asking permissions
 import { PermissionsAndroid, Platform } from 'react-native'
-
 // React Native Library for Exporting HTML to PDF 
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
-
 import Data from '../../SampleData/Data3';
 
 function ReportSharingSection() {
@@ -26,6 +20,7 @@ function ReportSharingSection() {
   const [emailChecked, setEmailChecked] = useState(false);
   const [phoneChecked, setPhoneChecked] = useState(false);
   const [filePath, setFilePath] = useState('');
+  const [report, setReport] = useState('');
 
   //It  isPermitted and is responssible for checking with permissions and requesting if no permission is given
   const isPermitted = async () => {
@@ -37,7 +32,7 @@ function ReportSharingSection() {
             title: 'External Storage Write Permission',
             message: 'App needs access to Storage data',
           },
-        );
+        ); 
         return granted === PermissionsAndroid.RESULTS.GRANTED;
       } catch (err) {
         alert('Write permission err', err);
@@ -50,7 +45,6 @@ function ReportSharingSection() {
 
   // responsible for generating pdf and saving it to the specified path
   const createPDF = async () => {
-    if (!phoneChecked) {
       if (await isPermitted()) {
         let options = {
           html:
@@ -92,7 +86,8 @@ function ReportSharingSection() {
               </style>
             </head>
             <body>
-              <h1 style="color: green;">NATURE COUNTER</h1>
+            <img src="../../assets/icons/nc-app-icon.svg" />
+              <h1> <span style="color:blue">Nature</span><span style="color:green">Counter</span></h1>
               <div class="row">
               <h4 style="float: left;">Report Date :2023-03-20 </h4> <br>
               <h4 style="float: left;margin-top: 40px; margin-left: -130px;">User ID : USR-937487</h4>
@@ -140,16 +135,16 @@ function ReportSharingSection() {
           height: 612
         };
         let file = await RNHTMLtoPDF.convert(options);
-        if (Platform.OS == 'android') {
+        setReport(file);
+        if (Platform.OS == 'android' && phoneChecked) {
           ToastAndroid.show(`Your file has been downloaded at - ${file.filePath}`, ToastAndroid.LONG)
+        }else if (Platform.OS == 'android' && emailChecked) {
+          receiveEmail()
+        } else {
+          ToastAndroid.show(`Please select an option to get your report`, ToastAndroid.LONG)
         }
         setFilePath(file.filePath);
       }
-    } else if (emailChecked) {
-      ToastAndroid.show('Report sent to your registered email id.', ToastAndroid.LONG);
-    } else {
-      ToastAndroid.show('Please select one of the above option to get the report.', ToastAndroid.LONG);
-    }
   };
 
   const onChange = (event, selectedDate) => {
@@ -173,10 +168,22 @@ function ReportSharingSection() {
     }
   };
 
+  const receiveEmail = async () => {
+    fetch('http://13.235.250.66:2000/send-email', {
+      method: 'post',
+      body: JSON.stringify({filename: 'Report.pdf'}),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(res => {
+      ToastAndroid.show(`Your file has been sent to your registered email!`, ToastAndroid.LONG)}).catch(error => {});;
+  }
+
   return (
     <ScrollView>
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 10 }}>
-      <Image style={{alignSelf:'center',alignItems:'center',justifyContent:'center'}} source={require('../../assets/Frame26.png')}/>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <NC_APP width="100" height="100" />
       <Button onPress={() => console.log('change profile picture')} style={styles.Button}>
         {/* #TODO figure out why this doesnt work<Image source={LOGIN_ICON} />*/}
       </Button>
@@ -189,13 +196,13 @@ function ReportSharingSection() {
       <Text style={{ marginTop: 20, fontSize: 16 }}>Please confirm how you want to share your health report:</Text>
       <View style={{ flexDirection: 'row', marginTop: 10, width: '100%' }}>
         <Text style={{ marginLeft: 5, fontSize: 16, justifyContent: 'flex-start' }}>Send to email </Text>
-        <CheckBox style={{ position: 'absolute', borderColor: 'green', marginLeft: 300 }} checked={emailChecked} onChange={() => setEmailChecked(!emailChecked)} />
+        <CheckBox style={{ position: 'absolute', borderColor: 'green', backgroundColor: emailChecked ? 'green' : 'white', marginLeft: 300 }} checked={emailChecked} onPress={() => {setEmailChecked(!emailChecked); setPhoneChecked(false)}} />
       </View>
       <View style={{ flexDirection: 'row', marginTop: 10, width: '100%' }}>
         <Text style={{ fontSize: 16, marginLeft: 5 }}>Download to my phone</Text>
-        <CheckBox style={{ position: 'absolute', borderColor: 'green', marginLeft: 300 }} checked={phoneChecked} onChange={() => setPhoneChecked(!phoneChecked)} />
+        <CheckBox style={{ position: 'absolute', borderColor: 'green', backgroundColor: phoneChecked ? 'green' : 'white', marginLeft: 300 }} checked={phoneChecked} onPress={() =>{ setPhoneChecked(!phoneChecked); setEmailChecked(false)}} />
       </View>
-      <Button onPress={createPDF} style={{ flexDirection: 'row', color: 'green', marginTop: 60, backgroundColor: 'green', justifyContent: 'center', alignSelf: 'center', alignItems: 'center', variant: 'rounded' }}>
+      <Button onPress={createPDF} style={{ flexDirection: 'row', width: "60%", bottom: 10, color: 'green', marginTop: 60, backgroundColor: 'green', justifyContent: 'center', alignSelf: 'center', alignItems: 'center', variant: 'rounded', borderRadius: 20 }}>
         <Text style={{ color: 'white', fontSize: 16 }}>Confirm</Text>
       </Button>
     </View>

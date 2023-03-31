@@ -29,6 +29,7 @@ import ArticleListScreen from './ArticleListScreen';
 import ArticleViewScreen from './ArticleViewScreen';
 import { LoggedSymptomsReportCard } from '../../components/Card';
 import NatureDetailScreen from './Discover/NatureDetailScreen';
+import ReportSharingSection from '../../components/Section/ReportSharingSection';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -230,11 +231,12 @@ function ReportNavigator() {
     <Stack.Navigator
       initialRouteName="ReportScreen"
       screenOptions={{
-        title: 'Health Report',
+        title: 'Share Report',
         headerStyle: { backgroundColor: '#F2F2F2', borderBottomWidth: 0 },
       }}
     >
       <Stack.Screen name="ReportScreen" component={ReportScreen} />
+      <Stack.Screen name="ReportDownloadScreen" component={ReportSharingSection} />
     </Stack.Navigator>
   );
 }

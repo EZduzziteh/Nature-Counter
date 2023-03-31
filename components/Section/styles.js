@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   tipImage:{
-    marginLeft: 200,
+    marginLeft: '68%',
   },
   text:{
     color:'#94D39E',

@@ -3,13 +3,13 @@ const Data = {
     days:
     [
         //this represents time spent in nature(in minutes) per day of the currently selected week
-        {x: 'Mon', y:28},
+        {x: 'Mon', y:15},
         {x: 'Tue', y:10},
-        {x: 'Wed', y:33},
-        {x: 'Thur', y:30},
-        {x: 'Fri', y:60},
+        {x: 'Wed', y:0},
+        {x: 'Thur', y:20},
+        {x: 'Fri', y:15},
         {x: 'Sat', y:10},
-        {x: 'Sun', y:45}
+        {x: 'Sun', y:5}
     ],
     weeks:
     [
@@ -25,12 +25,12 @@ const Data = {
                                     {name: "Sun", minutes: 5},
                                 ]
         },
-        {x:'Week 2', y: 157, days:[
+        {x:'Week 2', y: 137, days:[
                                 {name: "Mon", minutes: 22},
-                                {name: "Tue", minutes: 15},
-                                {name: "Wed", minutes: 60},
+                                {name: "Tue", minutes: 10},
+                                {name: "Wed", minutes: 50},
                                 {name: "Thu", minutes: 45},
-                                {name: "Fri", minutes: 0},
+                                {name: "Fri", minutes: 5},
                                 {name: "Sat", minutes: 20},
                                 {name: "Sun", minutes: 15},
                             ]
@@ -73,9 +73,9 @@ const Data = {
         {x:'Dec', y: 5},
 
     ],
-    currentGoal: 120, //this is the goal for the user to spend time in nature and is represented in minutes
-    currentMonthlyGoal: 300, //goal in minutes for the month
-    currentAnnualGoal: 1000,//goal in minutes for the year
+    currentGoal: 60, //this is the goal for the user to spend time in nature and is represented in minutes
+    currentMonthlyGoal: 240, //goal in minutes for the month
+    currentAnnualGoal: 2880,//goal in minutes for the year
     
     tips:[
         {id: 100, description:"Spending time in nature has both physical and mental health benefits."},

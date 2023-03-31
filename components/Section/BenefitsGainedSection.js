@@ -4,8 +4,7 @@ import { Linking, } from 'react-native';
 import Benefits from "../../SampleData/Benefits.json";
 import { ImagesAssets } from '../../assets/ImagesAssets.js';
 import SectionHeaderRow from '../Row/SectionHeaderRow';
-
-
+import EstimatedBenefitsLogo from '../../assets/icons/EstBenefits.svg';
 import {
   View,
   StyleSheet,
@@ -82,7 +81,8 @@ const BenefitsGainedSection = () => {
   return (
     <View>
     <View style={[ styles.container,{ flexDirection: 'row',}, ]}>
-    <Image source={require('../../assets/icons/TopBenefitsLogo.png')}></Image>
+    
+    <EstimatedBenefitsLogo></EstimatedBenefitsLogo>
     <SectionHeaderRow title="Estimated Benefits"/>
     </View>
 

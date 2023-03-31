@@ -10,7 +10,7 @@ import styles from '../Section/styles';
 import OverviewSection from '../Section/OverviewSection'
 import DatePicker from '../../components/Selector/DatePicker';
 import SectionHeaderRow from '../Row/SectionHeaderRow';
-
+import DurationHighlightsLogo from '../../assets/icons/Highlights.svg'
 
 
 
@@ -80,7 +80,7 @@ function DurationHighlightsChart ()  {
     return <View style = {styles.backgroundColor}>
         
     <View style={[ styles.container,{ flexDirection: 'row',}, ]}>
-        <Image style = {styles.HeaderImage} source={require('../../assets/icons/durationhighlightslogo.png')}></Image>
+        <DurationHighlightsLogo></DurationHighlightsLogo>
         <SectionHeaderRow title="Duration Highlights" />
     </View>
     {/*set the callbacks in our date picker and week selector ui elements*/}
