@@ -236,7 +236,7 @@ function getArticles(){
     console.log("----");
 
 
-    console.log("getting benefits test");
+    console.log("getting journal test");
     
     console.log("----");
 
@@ -244,9 +244,11 @@ function getArticles(){
     //10.0.2.2 is basically localhost of the android emulated device
     //3000 is the port the server is running off of
     //benefits is a route defined in app.js
+
+    /*
     axios({
         method: 'get',
-        url: 'http://10.0.2.2:3000/user_goals_views',
+        url: 'http://10.0.2.2:3000/journal/SomeUserID',
         responseType: 'json',
         headers: {
 
@@ -257,9 +259,29 @@ function getArticles(){
       })
     .then(function (response) {
         //return the entire response data (all available benefits from database)
-        console.log("benefits  entire response: "+response.data+ JSON.stringify(response));
+        console.log("journal entire response: "+response.data+ JSON.stringify(response));
     })
-    .catch(error => console.log(error));
+    .catch(error => console.log(error));*/
+
+
+
+    let config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: 'http://10.0.2.2:3000/journal/allentries?firebase_id=AIzaSyAqrpdh3Exhk73xyU4nBDAlzYSiitlgePs',
+    headers: { 
+        'Origin': '1', 
+        'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImQwNTU5YzU5MDgzZDc3YWI2NDUxOThiNTIxZmM4ZmVmZmVlZmJkNjIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vbmF0dXJlLWNvdW50ZXItOTA4OGIiLCJhdWQiOiJuYXR1cmUtY291bnRlci05MDg4YiIsImF1dGhfdGltZSI6MTY3NDc5MTMyMCwidXNlcl9pZCI6IlNBeDB4dTF5Z2VXUzc1Y1FsSFVwbm1zUG9XNTMiLCJzdWIiOiJTQXgweHUxeWdlV1M3NWNRbEhVcG5tc1BvVzUzIiwiaWF0IjoxNjc0NzkxMzIwLCJleHAiOjE2NzQ3OTQ5MjAsImVtYWlsIjoiYW5kcmV3QHRlc3QuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImFuZHJld0B0ZXN0LmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.TJn3gWMea9IvM2837TuWUkXeCNGLSa4sSB_7tPa9Xjlf9Erf6ljG0iypehPrebrOfHaNXvoMjh36uUOLQLyQFboKjUD_7yM6Ke713PKHgvo5OsdN1mHd6gkZZc14AZJ6pPuNGsnzseRrb8P2UGy8wJT68eTLQNmBlYIKOzHvsjeTLJ2vDVzw5ADXD05XBJz_V10iOsdvZ9HNbgN_S5WnLxy98SCQ0RviXIX4dz0YuapqINduoE9inAIbC1U-hiwwDkcTcA_iHz44CfY7Ylv5wGBsgO9zSNVsgLyZqd5j54PbyYrMJBsT1ilcOqghEwNG4JKtT2iN32dY7f4IwlWgtQ'
+    }
+    };
+
+    axios.request(config)
+    .then((response) => {
+    console.log(JSON.stringify(response.data));
+    })
+    .catch((error) => {
+    console.log(error);
+    });
 
 
     console.log("----");
@@ -291,13 +313,13 @@ return (
 
 <View>
     
-   {/*#TODO SASHA REMEMBER TO REMOVE THIS ITS JUST FOR TESTING SERVER AND DATABASE CONNECTIONS {
+        {/*#TODO SASHA REMEMBER TO REMOVE THIS ITS JUST FOR TESTING SERVER AND DATABASE CONNECTIONS */}
         <View>
             
             <Button  title = "Test server Add" onPress={()=>getArticles()}/>
         </View>
         <Button  color = '#459F5E' title = {text}  onPress = {()=>showMode('date')} />
-        }*/}
+        
     
 
         <View style={styles.calender}>
