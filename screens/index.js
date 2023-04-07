@@ -10,6 +10,8 @@ import GoalSetting from './App/GoalSettingScreen';
 import LogSymptoms from './App/LogSympyomScreen';
 import GoalHistory from './App/GoalHistoryScreen';
 import BenefitList from './App/UserBenefits';
+import JournalScreen from './App/JournalScreen';
+import AddJournalScreen from './App/AddJournalScreen';
 
 export {
   LoadingScreen,
@@ -23,5 +25,7 @@ export {
   LogSymptoms,
   GoalSetting,
   BenefitList,
-  GoalHistory
-}
+  GoalHistory,
+  JournalScreen,
+  AddJournalScreen,
+};

@@ -4,6 +4,7 @@ import { DARK_GREY, THEME_GREEN } from '../Utilities/Constants';
 import baseUrl from '../../helpers/baseUrl';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Circle, SvgUri, Svg } from 'react-native-svg';
+import SvgUriCustom from '../../helpers/SvgUriCustom'
 import ProgressBar from '../Utilities/ProgressBar';
 
 const StyledCard = styled.View`
@@ -36,7 +37,7 @@ const StyledText = styled.Text`
  */
 const BenefitCard = ({ icon, title, progress }) => {
   const iconUrl = `${baseUrl}icons/${icon}`;
-
+  console.log("URL in render BenefitCard:", iconUrl);
   return (
     <StyledCard>
       <Svg>
@@ -46,7 +47,7 @@ const BenefitCard = ({ icon, title, progress }) => {
           r="22"
           fill="rgba(36, 191, 156, 0.08)"
         />
-        <SvgUri
+        <SvgUriCustom
           uri={iconUrl}
           height={40}
           width={40}
@@ -63,8 +64,8 @@ const BenefitCard = ({ icon, title, progress }) => {
 export default BenefitCard;
 
 const RenderBenefit = ({ item, index }) => {
-  const iconurl = `${baseUrl}icons/${item.icon}`;
-
+  const iconUrl = `${baseUrl}icons/${item.icon}`;
+  console.log("URL in render BenefitCard:", iconUrl);
   return (
     <TouchableOpacity style={styles.benefits}>
       <View>
@@ -75,10 +76,10 @@ const RenderBenefit = ({ item, index }) => {
               : styles.benefitTypeIconActive
           }
         >
-          <SvgUri
+          <SvgUriCustom
             width="40"
             height="40"
-            source={{ uri: iconurl }}
+            source={{ uri: iconUrl }}
             fill={
               goalTime + 1 < item.gainTime
                 ? '#b3b3b3'

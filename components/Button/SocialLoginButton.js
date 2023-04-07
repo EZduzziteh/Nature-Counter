@@ -13,9 +13,11 @@ const SocialLoginButton = ({ onPress, login }) => {
   function renderLoginImg() {
     if (login === 'google') {
       return require('../../assets/GoogleIcon.png');
-    } else if (login === 'facebook') {
+    }
+    if (login === 'facebook') {
       return require('../../assets/facebookIcon.png');
-    } else if (login === 'apple') {
+    }
+    if (login === 'apple') {
       return require('../../assets/appleIcon.png');
     }
   }

@@ -3,8 +3,7 @@ import { THEME_DARK_GREEN, THEME_GREEN } from '../Utilities/Constants';
 
 const styles = StyleSheet.create({
   icon: {
-    height: 60,
-    width: 60,
+    width: 74,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -17,32 +16,63 @@ const styles = StyleSheet.create({
   signUpNowPromptContainer: {
     flexDirection: 'row',
     alignSelf: 'center',
-    marginTop: 30,
+    marginTop: 24,
     fontSize: 12,
   },
   dontHaveAccountLabel: {
     color: 'rgba(0,0,0,0.5)',
-    marginRight: 10,
+    marginRight: 4,
   },
-
   signUpNowButton: {
-    borderColor: 'black',
-    borderBottomWidth: 1,
+    color: THEME_GREEN,
+    fontWeight: '700',
   },
   button: {
-    height: 50,
-    width: 150,
-    backgroundColor: THEME_GREEN,
-    marginHorizontal: 38,
     borderRadius: 30,
     shadowOffset: {
       width: 0,
       height: 4,
     },
-    shadowRadius: 10,
     shadowOpacity: 0.25,
     justifyContent: 'center',
     alignSelf: 'center',
+  },
+  large: {
+    marginHorizontal: 38,
+    height: 50,
+    width: 220,
+  },
+  small: {
+    marginHorizontal: 5,
+    height: 40,
+    width: 78,
+  },
+  green: {
+    backgroundColor: THEME_GREEN,
+    shadowRadius: 10,
+  },
+  white: {
+    backgroundColor: '#fff',
+    shadowRadius: 5,
+  },
+  transparent: {
+    shadowRadius: 5,
+    borderWidth: 1,
+    borderColor: THEME_GREEN,
+  },
+  label: {
+    fontWeight: '400',
+    fontSize: 16,
+    alignSelf: 'center',
+  },
+  greenLabel: {
+    color: 'white',
+  },
+  whiteLabel: {
+    color: 'black',
+  },
+  transparentLabel: {
+    color: THEME_GREEN,
   },
   activeGoalButton: {
     height: 50,
@@ -89,33 +119,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  white: {
-    height: 50,
-    width: 90,
-    backgroundColor: '#fff',
-    marginHorizontal: 38,
-    borderRadius: 30,
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowRadius: 5,
-    shadowOpacity: 0.25,
-    justifyContent: 'center',
-    alignSelf: 'center',
-  },
-  label: {
-    color: 'white',
-    fontWeight: '400',
-    fontSize: 16,
-    alignSelf: 'center',
-  },
-  whiteLabel: {
-    color: '#000',
-    fontWeight: '400',
-    fontSize: 16,
-    alignSelf: 'center',
   },
   outlineButtonContainer: {
     borderWidth: 1,

@@ -1,70 +1,112 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, KeyboardAvoidingView} from 'react-native';
-import TextInput from '../../components/Input/TextInput';
+import React, { useState } from 'react';
+import {
+  View, Text, StyleSheet, KeyboardAvoidingView, TouchableOpacity, ScrollView,
+} from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
 import auth from '@react-native-firebase/auth';
+import styled from 'styled-components/native';
+import Modal from '../../components/Utilities/Modal';
+import TextInput from '../../components/Input/TextInput';
 import errors from './errors';
 import * as userActions from '../../redux/actions/userActions';
 import { Button, LoginSignupCTA } from '../../components/Button';
 import ErrorPrompt from '../../components/Label/ErrorPrompt';
+import WelcomeLogo from './WelcomeLogo';
+import PasswordValidation from '../../components/Utilities/PasswordValidation';
+import { THEME_GREEN } from '../../components/Utilities/Constants';
 
-const RegisterScreen = ({navigation}) => {
+import privacyPolicy from '../../public/text/privacyPolicy';
+import termsOfUse from '../../public/text/termsOfUse';
+
+const RegisterScreen = ({ navigation }) => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [consent, setConsent] = useState(false);
   const [error, setError] = useState(null);
   const [eyeIcon, setEyeIcon] = useState(true);
   const [confirmEyeIcon, setConfirmEyeIcon] = useState(true);
 
+  const [modalActive, setModalActive] = useState(false);
+  const [modalPage, setModalPage] = useState(0);
+
   const handleRegister = async () => {
-    if (!validatePassword(password, confirmPassword)) {
+    setError(null);
+
+    if (password !== confirmPassword) {
       return setError('Your password does not match your confirm password');
     }
-    if (!email) {
-      return setError('Please enter a valid email address');
-    }
-    try {
-      setError(null);
-      const userCredentials =
-        // auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
-        await auth().createUserWithEmailAndPassword(email, password);
 
-      await auth()
-        .currentUser.updateProfile({
-          displayName: name,
-          uid: uid,
-        })
-        .then(() => {
-          return userActions.addUser(
-            auth().currentUser.displayName,
-            auth().currentUser.email,
-            auth().currentUser.uid,
-          );
-        });
-      resetForm();
+    try {
+      await auth().createUserWithEmailAndPassword(email, password);
+      await auth().currentUser.updateProfile({ displayName: name });
+      await userActions.addUser(
+        auth().currentUser.displayName,
+        auth().currentUser.email,
+        auth().currentUser.uid,
+      );
+
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
     } catch (err) {
       console.log('error', err);
       setError(errors[err.code]);
     }
   };
 
-  const validatePassword = (password, confirmPassword) => {
-    return password === confirmPassword;
+  const terms = [
+    ['Privacy Policy', privacyPolicy],
+    ['Terms of Use ("Terms")', termsOfUse],
+  ];
+
+  const showTerms = () => {
+    setModalActive(true);
+    setModalPage(0);
   };
 
-  const resetForm = () => {
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
-  };
+  const GreenText = styled.Text`
+    color: ${THEME_GREEN};
+  `;
 
   return (
     <KeyboardAvoidingView style={styles.container}>
-      <Text style={styles.loginGreeting}>Sign up</Text>
+      <Modal title={terms[modalPage][0]} active={modalActive} setActive={setModalActive}>
+        <ScrollView style={styles.modalContentWrapper} persistentScrollbar>
+          <Text style={styles.modalContent}>{terms[modalPage][1]}</Text>
+        </ScrollView>
+        <View style={styles.modalButtons}>
+          {modalPage !== 0 && (
+          <Button
+            label="Back"
+            onPress={() => setModalPage(modalPage - 1)}
+            type="white"
+            size="small"
+          />
+          )}
+          <Button
+            label={modalPage === terms.length - 1 ? 'Close' : 'Next'}
+            onPress={modalPage === terms.length - 1
+              ? () => setModalActive(false)
+              : () => setModalPage(modalPage + 1)}
+            type="green"
+            size="small"
+          />
+        </View>
+      </Modal>
+      <WelcomeLogo text="Sign Up" width={126} />
+
+      <TextInput
+        placeholder="Name"
+        value={name}
+        onChangeText={setName}
+      />
 
       <TextInput
         placeholder="Email Address"
         value={email}
-        onChangeText={em => setEmail(em)}
+        onChangeText={setEmail}
       />
 
       <TextInput
@@ -72,32 +114,54 @@ const RegisterScreen = ({navigation}) => {
         placeholder="Password"
         secureTextEntry={eyeIcon}
         value={password}
-        onChangeText={pw => setPassword(pw)}
+        onChangeText={setPassword}
         eyeIcon={eyeIcon}
         onPress={() => setEyeIcon(!eyeIcon)}
       />
 
       <TextInput
         passwordInput
-        placeholder="Confirm Password"
+        placeholder="Verify Password"
         value={confirmPassword}
         secureTextEntry={confirmEyeIcon}
-        onChangeText={name => setConfirmPassword(name)}
+        onChangeText={setConfirmPassword}
         eyeIcon={eyeIcon}
         onPress={() => setConfirmEyeIcon(!confirmEyeIcon)}
       />
-      <View style={styles.submitButtonContainer}>
-        <Button label="Submit" onPress={handleRegister} />
+
+      <View style={styles.requirementContainer}>
+        <PasswordValidation password={password} />
       </View>
 
-      <LoginSignupCTA
-        promptLabel="Already a Nature Counter member?"
-        buttonLabel="Log in now"
-        onPress={() => navigation.goBack()}
-      />
+      <View style={styles.checkboxContainer}>
+        <CheckBox
+          value={consent}
+          onValueChange={setConsent}
+          tintColors={{ true: THEME_GREEN }}
+        />
+        <TouchableOpacity onPress={() => setConsent(!consent)} style={styles.consentText}>
+          <Text>
+            I agree to Nature Counter’s
+            <GreenText onPress={showTerms}> Terms and Conditions</GreenText>
+          </Text>
+        </TouchableOpacity>
+      </View>
 
       <ErrorPrompt errorMsg={error} />
 
+      <View style={styles.submitButtonContainer}>
+        <Button
+          label="Sign Up"
+          onPress={name && email && password && confirmPassword && consent ? handleRegister : null}
+          type={name && email && password && confirmPassword && consent ? 'green' : 'transparent'}
+        />
+      </View>
+
+      <LoginSignupCTA
+        promptLabel="Already have an account?"
+        buttonLabel="Login"
+        onPress={() => navigation.navigate('Login')}
+      />
     </KeyboardAvoidingView>
   );
 };
@@ -105,23 +169,28 @@ const RegisterScreen = ({navigation}) => {
 export default RegisterScreen;
 
 const styles = StyleSheet.create({
-  loginGreeting: {
-    marginTop: 40,
-    marginBottom: 70,
-    fontSize: 34,
-    fontWeight: 'bold',
-    width: 275,
-    lineHeight: 40,
-    alignItems: 'center',
-    alignSelf: 'center',
-    fontFamily: 'Roboto',
-  },
   container: {
     flex: 1,
     justifyContent: 'center',
     paddingHorizontal: 20,
   },
+  requirementContainer: {
+    margin: 5,
+  },
   submitButtonContainer: {
     marginTop: 25,
+  },
+  checkboxContainer: {
+    flexDirection: 'row',
+    marginVertical: 10,
+    alignItems: 'center',
+  },
+  modalContentWrapper: {
+    marginVertical: 16,
+    paddingRight: 6,
+  },
+  modalButtons: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
 });

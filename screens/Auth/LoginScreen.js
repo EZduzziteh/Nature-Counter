@@ -1,227 +1,106 @@
-// @ts-ignore
-import React, { useState, useEffect } from 'react';
-// @ts-ignore
+import React, { useState } from 'react';
 import {
   View,
   Text,
   TouchableOpacity,
-  Image,
   StyleSheet,
   KeyboardAvoidingView,
 } from 'react-native';
+import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-community/google-signin';
+import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import TextInput from '../../components/Input/TextInput';
-import auth, {
-  FacebookAuthProvider,
-  GoogleAuthProvider,
-  AppleAuthpProvider,
-} from '@react-native-firebase/auth';
 import errors from './errors';
-import {GoogleSignin} from '@react-native-community/google-signin';
-import {LoginManager, AccessToken} from 'react-native-fbsdk';
 import * as userActions from '../../redux/actions/userActions';
 import { Button, SocialLoginButton, LoginSignupCTA } from '../../components/Button';
 import ErrorPrompt from '../../components/Label/ErrorPrompt';
+import WelcomeLogo from './WelcomeLogo';
 
-const LoginScreen = ({navigation}) => {
+GoogleSignin.configure({
+  webClientId: '741177480474-6um6esqgrgg2fje8lhacfsrqt35eet3a.apps.googleusercontent.com',
+});
+
+const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [eyeIcon, setEyeIcon] = useState(true);
 
-  useEffect(() => {
-    GoogleSignin.configure({
-      webClientId:
-        '741177480474-6um6esqgrgg2fje8lhacfsrqt35eet3a.apps.googleusercontent.com',
-    });
-  }, []);
-
-  const handleLogin = async () => {
-    if (!email || !password) {
-      return setError('Please enter a valid email address or password');
-    }
-
-    try {
-      setError(null);
-      await auth()
-        .signInWithEmailAndPassword(email, password)
-        .then(() => {
-          return userActions.addUser(
-            auth().currentUser.displayName,
-            auth().currentUser.email,
-            auth().currentUser.uid,
-          );
-        });
-    } catch (err) {
-      console.log(err.code);
-      setError(errors[err.code]);
-    }
-  };
-
-  const facebookSignin = async () => {
-    await LoginManager.logOut();
-
-    /* Login with permissions */
-    const result = await LoginManager.logInWithPermissions([
-      'public_profile',
-      'email',
-    ]);
-
-    if (result.isCancelled) {
-      throw 'User cancelled the login process';
-    }
-
-    /* Once signed in, get the users AccesToken */
-    const data = await AccessToken.getCurrentAccessToken();
-
-    console.log('what is my data?', data);
-
-    if (!data) {
-      throw 'Something went wrong obtaining access token';
-    }
-
-    /* Create a Firebase credential with the AccessToken */
-    const facebookCredential = FacebookAuthProvider.credential(
-      data.accessToken,
-    );
-
-    /* Sign-in the user with the credential */
-    return auth().signInWithCredential(facebookCredential);
+  const emailSignin = async () => {
+    setError(null);
+    return auth().signInWithEmailAndPassword(email, password);
   };
 
   const googleSignin = async () => {
-    try {
-      const {idToken} = await GoogleSignin.signIn();
-
-      const googleCredential = GoogleAuthProvider.credential(idToken);
-
-      return auth().signInWithCredential(googleCredential);
-    } catch (err) {
-      console.log('this was the google sign in error', err);
-    }
+    const user = await GoogleSignin.signIn();
+    const googleCredential = auth.GoogleAuthProvider.credential(user.idToken);
+    return auth().signInWithCredential(googleCredential);
   };
 
-  const appleSignin = async () => {
-    try {
-      const {idToken} = await appleSignin.signIn();
+  const facebookSignin = async () => {
+    LoginManager.logOut();
 
-      const googleCredential = GoogleAuthProvider.credential(idToken);
+    const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+    if (result.isCancelled) throw new Error('User cancelled the login process');
 
-      return auth().signInWithCredential(googleCredential);
-    } catch (err) {
-      console.log('this was the google sign in error', err);
-    }
+    const data = await AccessToken.getCurrentAccessToken();
+    if (!data) throw new Error('Something went wrong obtaining access token');
+
+    const facebookCredential = auth.FacebookAuthProvider.credential(data.accessToken);
+    return auth().signInWithCredential(facebookCredential);
   };
 
-  const actionCodeSettings = {
-    handleCodeInApp: false,
-    url: 'https://naturecounter.page.link/password-reset',
-    iOS: {
-      bundleId: 'org.naturecounter',
-    },
-    android: {
-      packageName: 'com.naturecounter',
-    },
-    dynamicLinkDomain: 'naturecounter.page.link',
+  const addUser = uc => userActions.addUser(
+    uc.user.displayName,
+    uc.user.email,
+    uc.user.uid,
+  );
+
+  const handleSignInError = err => {
+    if (err.code in errors) setError(errors[err.code]);
+    else console.error(err);
   };
 
-  const handlePasswordReset = async () => {
-    navigation.navigate('newPassword')
-    // if (!email) {
-    //   return setError('Please enter a valid email address');
-    // }
-
-    // setError('Reset password email sent');
-
-    // try {
-    //   const res = await auth().sendPasswordResetEmail(
-    //     email,
-    //     actionCodeSettings,
-    //   );
-    // } catch (err) {
-    //   if (err.code === 'auth/invalid-email') {
-    //     return setError('Please enter a valid email address');
-    //   }
-    // }
-  };
-
-  const handleGoogleLogin = () => {
-    googleSignin()
-      .then(res => console.log('user is signed in', res))
-      .then(() => {
-        return userActions.addUser(
-          auth().currentUser.displayName,
-          auth().currentUser.email,
-          auth().currentUser.uid,
-        );
-      });
-  };
-
-  const handleFacebookLogin = () => {
-    facebookSignin()
-      .then(res => console.log('user is signed in', res))
-      .then(() => {
-        return userActions.addUser(
-          auth().currentUser.displayName,
-          auth().currentUser.email,
-          auth().currentUser.uid,
-        );
-      });
-  };
-
-  const handleAppleLogin = () => {
-    facebookSignin()
-      .then(res => console.log('user is signed in', res))
-      .then(() => {
-        return userActions.addUser(
-          auth().currentUser.displayName,
-          auth().currentUser.email,
-          auth().currentUser.uid,
-        );
-      });
-  };
+  const handleLogin = () => emailSignin().then(addUser).catch(handleSignInError);
+  const handleGoogleLogin = () => googleSignin().then(addUser).catch(handleSignInError);
+  const handleFacebookLogin = () => facebookSignin().then(addUser).catch(handleSignInError);
+  const handleAppleLogin = () => facebookSignin().then(addUser).catch(handleSignInError);
 
   return (
     <KeyboardAvoidingView style={styles.container}>
-      <View>
-        <Image
-          style={styles.loginLogo}
-          source={require('../../assets/Frame26.png')}
-        />
-      </View>
-
-      <Text style={styles.loginGreeting}>Welcome to Nature Counter!</Text>
-      <View style={styles.bar} />
+      <WelcomeLogo text={'Welcome to \nNature Counter!'} width={260} large />
 
       <TextInput
         placeholder="Email"
         value={email}
-        onChangeText={(em) => setEmail(em)}
+        onChangeText={setEmail}
       />
 
       <TextInput
-        passwordInput
         placeholder="Password"
         value={password}
+        onChangeText={setPassword}
+        passwordInput
         secureTextEntry={eyeIcon}
-        onChangeText={(pw) => setPassword(pw)}
         eyeIcon={eyeIcon}
         onPress={() => setEyeIcon(!eyeIcon)}
       />
 
       <View style={styles.forgotPasswordContainer}>
-
-      
-        <TouchableOpacity         onPress={() => navigation.navigate('resetPassword')}
->
-          <Text style={styles.forgotPasswordButton}>Forgot your password?</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('resetPassword')}>
+          <Text style={styles.forgotPasswordButton}>Forgot password?</Text>
         </TouchableOpacity>
       </View>
 
+      <View style={{ flexGrow: 1 }} />
 
-      <Button label="Login" onPress={handleLogin} />
+      <Button
+        label="Login"
+        onPress={email && password ? handleLogin : null}
+        type={email && password ? 'green' : 'transparent'}
+      />
 
       <View style={styles.socialLoginContainer}>
-
         <SocialLoginButton
           login="google"
           onPress={handleGoogleLogin}
@@ -234,12 +113,11 @@ const LoginScreen = ({navigation}) => {
           login="apple"
           onPress={handleAppleLogin}
         />
-
       </View>
 
       <LoginSignupCTA
         promptLabel="Don’t have an account?"
-        buttonLabel="Sign up now"
+        buttonLabel="Sign up"
         onPress={() => navigation.navigate('Register')}
       />
 
@@ -256,59 +134,23 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     paddingHorizontal: 20,
+    paddingVertical: 40,
   },
   socialLoginContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 30,
-  },
-  signUpNowPromptContainer: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-    marginTop: 30,
-    fontSize: 12,
-  },
-  signUpNowButton: {
-    borderColor: 'black',
-    borderBottomWidth: 1,
+    marginTop: 24,
   },
   forgotPasswordContainer: {
-    marginHorizontal: 30,
     marginBottom: 20,
-    marginTop: 10,
+    marginTop: 3,
   },
   forgotPasswordButton: {
-    color: 'rgba(0,0,0,0.5)',
+    color: '#A4A9AE',
     fontSize: 13,
     marginHorizontal: 8,
     textAlign: 'right',
-  },
-  dontHaveAccountLabel: {
-    color: 'rgba(0,0,0,0.5)',
-    marginRight: 10,
-  },
-  loginLogo: {
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  loginGreeting: {
-    marginTop: 40,
-    marginBottom: 70,
-    fontSize: 34,
-    fontWeight: 'bold',
-    width: 275,
-    lineHeight: 40,
-    alignItems: 'center',
-    alignSelf: 'center',
-    fontFamily: 'Roboto',
-  },
-  bar: {
-    marginTop: -85,
-    backgroundColor: 'rgba(36,191,156,0.2)',
-    height: 17,
-    width: 269,
-    alignSelf: 'center',
+    fontWeight: '700',
   },
   form: {
     marginHorizontal: 38,

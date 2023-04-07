@@ -4,6 +4,7 @@ import IconButton from './IconButton';
 import LoginSignupCTA from './LoginSignupCTA';
 import OutlineButton from './OutlineButton';
 import SocialLoginButton from './SocialLoginButton';
+import CalendarButton from './CalendarButton';
 
 export {
   Button,
@@ -12,4 +13,5 @@ export {
   LoginSignupCTA,
   OutlineButton,
   SocialLoginButton,
+  CalendarButton,
 };

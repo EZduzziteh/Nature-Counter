@@ -232,6 +232,19 @@ function getArticles(){
         .catch(error => console.log(error));
     */
     console.log("----");
+
+   // console.log("getting articles test");
+    /*
+    axios({
+        method: 'get',
+        url: 'http://10.0.2.2:3000/articles/',
+        responseType: 'json'
+      })
+    .then(function (response) {
+        console.log("articles response: "+ JSON.stringify(response));
+    })
+    .catch(error => console.log(error));
+*/
     console.log("----"); 
     console.log("----");
 
@@ -265,10 +278,95 @@ function getArticles(){
 
 
 
+/*
+
+let startDate = new Date("2023-04-05T07:00:00.000Z");
+
+let config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: 'http://10.0.2.2:3000/journal/date?firebase_id=AIzaSyAqrpdh3Exhk73xyU4nBDAlzYSiitlgePs',
+    headers: { 
+        'Origin': '1', 
+        'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImQwNTU5YzU5MDgzZDc3YWI2NDUxOThiNTIxZmM4ZmVmZmVlZmJkNjIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vbmF0dXJlLWNvdW50ZXItOTA4OGIiLCJhdWQiOiJuYXR1cmUtY291bnRlci05MDg4YiIsImF1dGhfdGltZSI6MTY3NDc5MTMyMCwidXNlcl9pZCI6IlNBeDB4dTF5Z2VXUzc1Y1FsSFVwbm1zUG9XNTMiLCJzdWIiOiJTQXgweHUxeWdlV1M3NWNRbEhVcG5tc1BvVzUzIiwiaWF0IjoxNjc0NzkxMzIwLCJleHAiOjE2NzQ3OTQ5MjAsImVtYWlsIjoiYW5kcmV3QHRlc3QuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImFuZHJld0B0ZXN0LmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.TJn3gWMea9IvM2837TuWUkXeCNGLSa4sSB_7tPa9Xjlf9Erf6ljG0iypehPrebrOfHaNXvoMjh36uUOLQLyQFboKjUD_7yM6Ke713PKHgvo5OsdN1mHd6gkZZc14AZJ6pPuNGsnzseRrb8P2UGy8wJT68eTLQNmBlYIKOzHvsjeTLJ2vDVzw5ADXD05XBJz_V10iOsdvZ9HNbgN_S5WnLxy98SCQ0RviXIX4dz0YuapqINduoE9inAIbC1U-hiwwDkcTcA_iHz44CfY7Ylv5wGBsgO9zSNVsgLyZqd5j54PbyYrMJBsT1ilcOqghEwNG4JKtT2iN32dY7f4IwlWgtQ'
+    },
+    body:{
+        start_time: 5,
+        end_time: 10,
+    }
+    }; 
+*/
+
+
+/*{
+    location: {
+      latitude: { type: Number },
+      longitude: { type: Number },
+      name: { type: String },
+      city: { type: String },
+      stateInitials: { type: String,
+        enum: {
+          values:["AK","AL","AR","AZ","CA","CO","CT","DE","FL","GA","HI","IA","ID","IL","IN","KS","KY","LA","MA","MD","ME","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VA","VT","WA","WI","WV","WY"],
+          message: "{VALUE} is not a state"
+          } },
+      zip: { type: String },
+      category: {type: String}
+    },
+    start_time: { type: Date, required: true },
+    end_time: { type: Date, required: true },
+    mongoId: { type: Schema.Types.ObjectId, ref: "UserDetail" },
+    firebaseId: { type: String, required: [true, 'Firebase Id required'] } */
+
+
+
+/*
+    let config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: 'http://10.0.2.2:3000/journal/singleentry?firebase_id=AIzaSyAqrpdh3Exhk73xyU4nBDAlzYSiitlgePs',
+    headers: { 
+        'Origin': '1', 
+        'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImQwNTU5YzU5MDgzZDc3YWI2NDUxOThiNTIxZmM4ZmVmZmVlZmJkNjIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vbmF0dXJlLWNvdW50ZXItOTA4OGIiLCJhdWQiOiJuYXR1cmUtY291bnRlci05MDg4YiIsImF1dGhfdGltZSI6MTY3NDc5MTMyMCwidXNlcl9pZCI6IlNBeDB4dTF5Z2VXUzc1Y1FsSFVwbm1zUG9XNTMiLCJzdWIiOiJTQXgweHUxeWdlV1M3NWNRbEhVcG5tc1BvVzUzIiwiaWF0IjoxNjc0NzkxMzIwLCJleHAiOjE2NzQ3OTQ5MjAsImVtYWlsIjoiYW5kcmV3QHRlc3QuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImFuZHJld0B0ZXN0LmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.TJn3gWMea9IvM2837TuWUkXeCNGLSa4sSB_7tPa9Xjlf9Erf6ljG0iypehPrebrOfHaNXvoMjh36uUOLQLyQFboKjUD_7yM6Ke713PKHgvo5OsdN1mHd6gkZZc14AZJ6pPuNGsnzseRrb8P2UGy8wJT68eTLQNmBlYIKOzHvsjeTLJ2vDVzw5ADXD05XBJz_V10iOsdvZ9HNbgN_S5WnLxy98SCQ0RviXIX4dz0YuapqINduoE9inAIbC1U-hiwwDkcTcA_iHz44CfY7Ylv5wGBsgO9zSNVsgLyZqd5j54PbyYrMJBsT1ilcOqghEwNG4JKtT2iN32dY7f4IwlWgtQ'
+    },
+    body:{
+       
+            location: {
+              latitude: 51.0447,
+              longitude: 114.0719,
+              name: "Walk 1 Test",
+              city:  "Calgary",
+              stateInitials: "CA",
+                
+              zip: "T2E3C6",
+              category: "test"
+            },
+            start_time: new Date("2023-04-05T03:24:00"),
+            end_time: new Date("2023-04-05T04:42:00"),
+            mongoId: {email: "r3kt4ngl3@hotmail.com",
+            firebaseId: "AIzaSyAqrpdh3Exhk73xyU4nBDAlzYSiitlgePs",
+            name: "Sasha",
+            gender: "Male",
+            dob: new Date(),
+            weekly_goal: 60,
+            admin: false,
+            userAgreementTAC: false
+            },
+            firebaseId: "AIzaSyAqrpdh3Exhk73xyU4nBDAlzYSiitlgePs" 
+          
+    }
+    };
+
+    */
+
+
+    //SAx0xu1ygeWS75cQlHUpnmsPoW53
+    // k66FFQGtKkN5fQc9HCJB7ABIuPh1
+
+    console.log("---testing-");
     let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: 'http://10.0.2.2:3000/journal/allentries?firebase_id=AIzaSyAqrpdh3Exhk73xyU4nBDAlzYSiitlgePs',
+    url: 'http://10.0.2.2:3000/journal/allentries',
     headers: { 
         'Origin': '1', 
         'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImQwNTU5YzU5MDgzZDc3YWI2NDUxOThiNTIxZmM4ZmVmZmVlZmJkNjIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vbmF0dXJlLWNvdW50ZXItOTA4OGIiLCJhdWQiOiJuYXR1cmUtY291bnRlci05MDg4YiIsImF1dGhfdGltZSI6MTY3NDc5MTMyMCwidXNlcl9pZCI6IlNBeDB4dTF5Z2VXUzc1Y1FsSFVwbm1zUG9XNTMiLCJzdWIiOiJTQXgweHUxeWdlV1M3NWNRbEhVcG5tc1BvVzUzIiwiaWF0IjoxNjc0NzkxMzIwLCJleHAiOjE2NzQ3OTQ5MjAsImVtYWlsIjoiYW5kcmV3QHRlc3QuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImFuZHJld0B0ZXN0LmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.TJn3gWMea9IvM2837TuWUkXeCNGLSa4sSB_7tPa9Xjlf9Erf6ljG0iypehPrebrOfHaNXvoMjh36uUOLQLyQFboKjUD_7yM6Ke713PKHgvo5OsdN1mHd6gkZZc14AZJ6pPuNGsnzseRrb8P2UGy8wJT68eTLQNmBlYIKOzHvsjeTLJ2vDVzw5ADXD05XBJz_V10iOsdvZ9HNbgN_S5WnLxy98SCQ0RviXIX4dz0YuapqINduoE9inAIbC1U-hiwwDkcTcA_iHz44CfY7Ylv5wGBsgO9zSNVsgLyZqd5j54PbyYrMJBsT1ilcOqghEwNG4JKtT2iN32dY7f4IwlWgtQ'
@@ -284,9 +382,9 @@ function getArticles(){
     });
 
 
-    console.log("----");
     console.log("----"); 
     console.log("----");
+
 
 
    

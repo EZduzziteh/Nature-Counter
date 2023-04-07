@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, StyleSheet} from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 
 /**
  *
@@ -7,9 +7,7 @@ import {Text, StyleSheet} from 'react-native';
  * @return {JSX.Element}
  * @constructor
  */
-const ErrorPrompt = ({errorMsg}) => {
-  return <Text style={styles.errorLabel}> {errorMsg}</Text>;
-};
+const ErrorPrompt = ({ errorMsg }) => <Text style={styles.errorLabel}>{errorMsg}</Text>;
 
 export default ErrorPrompt;
 
@@ -18,6 +16,6 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: 16,
     textAlign: 'center',
-    marginTop: 30,
+    marginVertical: 10,
   },
 });

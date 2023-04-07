@@ -5,7 +5,7 @@ import Articles from './articleReducer';
 import Benefits from './benefitReducer';
 import UserGoal from './goalReducer';
 import Symptoms from './symptomReducer';
-
+import JournalEntries from './journalEntryReducer';
 //import user from './userReducer';
 
 export default combineReducers({
@@ -14,5 +14,6 @@ export default combineReducers({
     ArticleData: Articles,
     BenefitData: Benefits,
     SymptomData: Symptoms,
+    JournalEntryData: JournalEntries,
     UserGoals: UserGoal
 });

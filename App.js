@@ -1,28 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import auth from '@react-native-firebase/auth';
 import dynamicLinks from '@react-native-firebase/dynamic-links';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import * as userActions from './redux/actions/userActions';
-import {LoginScreen, RegisterScreen, resetPasswordScreen, newPasswordScreen, LoadingScreen, Main} from './screens';
-import { Provider as PaperProvider } from 'react-native-paper';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import * as reUserActions from './redux/actions/userActions';
+import {
+  LoginScreen,
+  RegisterScreen,
+  resetPasswordScreen,
+  newPasswordScreen,
+  LoadingScreen,
+} from './screens';
 import MainScreens from './screens/App/MainScreens';
+import * as Constants from './components/Utilities/Constants';
+
+import 'react-native-url-polyfill/auto';
 
 const authStack = createStackNavigator();
 
 const App = (props) => {
-  const { email, emailVerified, userActions, displayName, uid } = props;
+  const {
+    email, emailVerified, userActions, displayName,
+  } = props;
 
+  const navigationRef = useRef();
   const [initializing, setInitializing] = useState(true);
+  const [oobCode, setOOBCode] = useState('');
 
   const handleDynamicLink = async (link) => {
-    if (link.url === 'https://naturecounter.page.link/email-verification') {
-      console.log('here after receiving deep link');
+    if (link.url.includes('reset')) {
+      setOOBCode(new URL(link.url).searchParams.get('oobCode'));
+    } else if (link.url.includes('email-verification')) {
       await auth().currentUser.reload();
     }
   };
+
+  useEffect(() => {
+    if (oobCode) {
+      navigationRef.current?.navigate('newPassword', { oobCode });
+      setOOBCode('');
+    }
+  }, [oobCode]);
 
   const onUserChanged = (user) => {
     if (!user) return null;
@@ -45,9 +66,9 @@ const App = (props) => {
     const userSubscribe = auth().onUserChanged(onUserChanged);
     const unsubscribe = dynamicLinks().onLink(handleDynamicLink);
     return () => {
-      subscriber;
+      subscriber();
       unsubscribe();
-      userSubscribe;
+      userSubscribe();
     };
   }, []);
 
@@ -60,27 +81,38 @@ const App = (props) => {
 
   if (!email) {
     return (
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
         <authStack.Navigator screenOptions={{ headerShown: false }}>
           <authStack.Screen name="Login" component={LoginScreen} />
           <authStack.Screen name="Register" component={RegisterScreen} />
-          <authStack.Screen name="resetPassword" component={resetPasswordScreen} />
+          <authStack.Screen
+            name="resetPassword"
+            component={resetPasswordScreen}
+          />
           <authStack.Screen name="newPassword" component={newPasswordScreen} />
-
 
           {/* Screen for Testing Component */}
           {/* <authStack.Screen name="Test" component={Test} /> */}
         </authStack.Navigator>
       </NavigationContainer>
-
     );
   }
+
+  const theme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: Constants.THEME_DARK_GREEN,
+      secondary: '#f1c40f',
+      tertiary: '#a1b2c3',
+    },
+  };
 
   /**
    * Added  Paper Provider to handle Select/Drop down component
    */
   return (
-    <PaperProvider>
+    <PaperProvider theme={theme}>
       <MainScreens
         logout={handleLogout}
         user={email}
@@ -99,7 +131,7 @@ export default connect(
     uid: state.getIn(['user', 'uid']),
   }),
   (dispatch) => ({
-    userActions: bindActionCreators(userActions, dispatch),
+    userActions: bindActionCreators(reUserActions, dispatch),
   }),
 )(App);
 
@@ -140,4 +172,3 @@ export default connect(
 //    "refreshToken": "AE0u-NcnV-rrzBNm_z-s-2qBYuefgoXeQ5GpSKyXMjXywb7QOnkjH-F6Q9XXLYK3yGFO2crYPRZUOCIedxDkpgaFdpPSHW1sLj3QaoZysXFI8F5ToI86riptZBbMb2vcTBkbannpgBVTznXHXgVMaQyamffTjtGOYCQVP_gl0TEI_s3acprKUDcKdyGL-LwQU8LxuUoLOjc3eXpJM5ULrEtqEtwjYLkVJQ",
 //    "uid": "QUGKbk1k6yMFIFjSjqFxblRtufQ2"
 // }
-

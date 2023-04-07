@@ -61,7 +61,7 @@ export default function ArticleListScreen({ articles }) {
   /**
    * Filter articles based on the selected value of the picker
    */
-  const filterArticles = data.filter((a) => a.healthCategory === selected);
+  const filterArticles = data.filter(a => (a.healthCategory === selected));
 
   /**
    * If there are more than filtered articles
@@ -131,8 +131,8 @@ export default function ArticleListScreen({ articles }) {
    * @return {*}
    */
   const renderArticles = () => (
-    renderArticleList?.map((b) => (
-      <View style={{ padding: 5 }}>
+    renderArticleList?.map((b,i) => (
+      <View rstyle={{ padding: 5 }}>
         <ArticleCard
           article={b}
           onPress={handleArticlePress}

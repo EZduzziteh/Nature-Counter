@@ -1,0 +1,65 @@
+[
+  {
+    "id": "db7e3ea6-4069-11ed-9241-f09e4a5b621a",
+    "date": "2022-09-20T22:44:30.652Z",
+    "location": "Elysian Park",
+    "startTime": "2022-09-20T11:13:00Z",
+    "duration": "01:17:00"
+  },
+  {
+    "id": "dc6005ca-4069-11ed-9241-f09e4a5b621a",
+    "date": "2022-09-17T22:44:30.652Z",
+    "location": "Sleeping Giant State Park",
+    "startTime": "2022-09-17T12:02:00Z",
+    "duration": "04:11:00"
+  },
+  {
+    "id": "cc1997f4-408b-11ed-ab24-f09e4a5b621a",
+    "date": "2022-09-20T22:44:30.652Z",
+    "location": "Kenney Park",
+    "startTime": "2022-09-20T09:55:00Z",
+    "duration": "06:23:00"
+  },
+  {
+    "id": "472487f4-4124-11ed-8545-f09e4a5b621a",
+    "date": "2022-09-16T22:44:30.652Z",
+    "location": "Goodwin Park",
+    "startTime": "2022-09-16T18:18:00Z",
+    "duration": "00:46:00"
+  },
+  {
+    "id": "faf911be-4124-11ed-8545-f09e4a5b621a",
+    "date": "2022-09-20T22:44:30.652Z",
+    "location": "Elysian Park",
+    "startTime": "2022-09-20T19:22:00Z",
+    "duration": "03:15:00"
+  },
+  {
+    "id": "17f8e9f6-4125-11ed-8545-f09e4a5b621a",
+    "date": "2022-09-17T22:44:30.652Z",
+    "location": "Sleeping Giant State Park",
+    "startTime": "2022-09-17T20:54:00Z",
+    "duration": "01:43:00"
+  },
+  {
+    "id": "30746564-4125-11ed-8545-f09e4a5b621a",
+    "date": "2022-09-18T22:44:30.652Z",
+    "location": "Kenney Park",
+    "startTime": "2022-09-18T06:40:00Z",
+    "duration": "06:17:00"
+  },
+  {
+    "id": "379c4898-4125-11ed-8545-f09e4a5b621a",
+    "date": "2022-09-16T22:44:30.652Z",
+    "location": "Goodwin Park",
+    "startTime": "2022-09-16T09:45:00Z",
+    "duration": "00:23:00"
+  },
+  {
+    "id": "13a8084e-41b3-11ed-9994-f09e4a5b621a",
+    "date": "2022-09-10T22:44:30.652Z",
+    "location": "Farm Hill Park",
+    "startTime": "2022-09-10T19:15:00Z",
+    "duration": "00:15:00"
+  }
+]

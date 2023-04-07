@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native';
 import moment from 'moment';
-import * as commonFun from '../../components/Utilities/commonFunctions';
 import auth from '@react-native-firebase/auth';
+import { useNavigation } from '@react-navigation/native';
+import * as commonFun from '../../components/Utilities/commonFunctions';
 import CounterSection from '../../components/Section/CounterSection';
 import VerifyEmailBanner from '../../components/Row/VerifyEmailBanner';
 import BenefitsGainedSection from '../../components/Section/BenefitsGainedSection';
 import ArticlesSection from '../../components/Section/ArticlesSection';
-import { useNavigation } from '@react-navigation/native';
 
 /**
  * This is the screen after sign up and login
@@ -17,7 +17,14 @@ import { useNavigation } from '@react-navigation/native';
  * @return {JSX.Element}
  * @constructor
  */
-const HomeScreen = ({ user, benefits, articles, userisLoading, usererrmsg, userdetails }) => {
+const HomeScreen = ({
+  user,
+  benefits,
+  articles,
+  userisLoading,
+  usererrmsg,
+  userdetails,
+}) => {
   const [userArticle, setuserArticle] = useState();
   const [userBenefitList, setuserBenefitList] = useState();
   const [selectedDate, setSelectedDate] = useState(moment());
@@ -33,23 +40,32 @@ const HomeScreen = ({ user, benefits, articles, userisLoading, usererrmsg, userd
 
   const handleBenefitsPress = () => {
     navigation.navigate('BenefitsList');
-  }
+  };
 
   const handleSeeAllArticlesPress = () => {
     navigation.navigate('ArticleList');
-  }
+  };
 
   useEffect(() => {
     async function getData() {
       try {
-        if (typeof user?.goalDetail !== 'undefined' && benefits !== undefined && articles !== undefined) {
+        if (
+          typeof user?.goalDetail !== 'undefined'
+          && benefits !== undefined
+          && articles !== undefined
+        ) {
           const userBenefit = await commonFun.filterUserBenefits(
-            benefits, user?.goalDetail.goalTime
+            benefits,
+            user?.goalDetail.goalTime,
           );
           const filterIds = await commonFun.filterHealthCategoryId(userBenefit);
-          const selectedArticles = await commonFun.filterArticleById(articles, filterIds);
-          const uniqueSelectedArticles = await commonFun
-            .uniqueSelectedArticlesbyFeature(selectedArticles);
+          const selectedArticles = await commonFun.filterArticleById(
+            articles,
+            filterIds,
+          );
+          const uniqueSelectedArticles = await commonFun.uniqueSelectedArticlesbyFeature(
+            selectedArticles,
+          );
 
           setuserArticle(uniqueSelectedArticles);
 
@@ -59,7 +75,9 @@ const HomeScreen = ({ user, benefits, articles, userisLoading, usererrmsg, userd
             );
 
             const UserDailyBenefit = await commonFun.UserDailyBenefit(
-              userBenefit, dailyActivityTime, selectedDate
+              userBenefit,
+              dailyActivityTime,
+              selectedDate,
             );
 
             setuserBenefitList(UserDailyBenefit.slice(0, 3));
@@ -81,11 +99,12 @@ const HomeScreen = ({ user, benefits, articles, userisLoading, usererrmsg, userd
     }
 
     /**
-     * if benefits exist then take the first 3 ebefits
+     * if benefits exist then take the first 3 benefits
      * and make them the featured benefits
      */
-    if (benefits?.data) {
-      setFeaturedBenefits(benefits.data.splice(0,3))
+    if (benefits?.data && benefits.data.length !== 0) {
+      console.log("Benefits data:", benefits.data);
+      setFeaturedBenefits(benefits.data.splice(0, 3));
     }
 
     /**
@@ -96,7 +115,7 @@ const HomeScreen = ({ user, benefits, articles, userisLoading, usererrmsg, userd
       setLimit(60);
     }
 
-    setLimit(userdetails?.goalDetail?.goalTime)
+    setLimit(userdetails?.goalDetail?.goalTime);
   }, [userdetails, benefits, articles, userisLoading]);
 
   /**
@@ -111,19 +130,23 @@ const HomeScreen = ({ user, benefits, articles, userisLoading, usererrmsg, userd
   return (
     <SafeAreaView style={{ height: '100%' }}>
       {!emailVerified && <VerifyEmailBanner />}
-        <CounterSection
-          elapsedTime={elapsedTime}
-          limit={limit}
-          runTime={runTime}
-          manageCounter={manageCounter}
-          navigation={navigation}
-        />
-      <BenefitsGainedSection benefits={featuredBenefits} onPress={handleBenefitsPress} />
-      
+      <CounterSection
+        elapsedTime={elapsedTime}
+        limit={limit}
+        runTime={runTime}
+        manageCounter={manageCounter}
+        navigation={navigation}
+      />
+      <BenefitsGainedSection
+        benefits={featuredBenefits}
+        onPress={handleBenefitsPress}
+      />
+      <ArticlesSection
+        article={featureArticle}
+        onPress={handleSeeAllArticlesPress}
+      />
     </SafeAreaView>
   );
-
-  //<ArticlesSection article={featureArticle} onPress={handleSeeAllArticlesPress} />
 
   /**
    * CURRENTLY UNSUPPORTED

@@ -27,7 +27,7 @@ const CounterSection = ({ elapsedTime, limit, runTime, manageCounter, navigation
         <IconButton label="plus" />
         <IconButton onPress={manageCounter} label={runTime ? 'stop' : 'resume'} />
         <IconButton onPress={() => navigation.navigate('GoalSetting')} />
-        <Button label="Log History" />
+        <Button label="Log History" onPress={() => navigation.navigate('JournalScreen')}/>
       </StyledButtonRow>
     </>
   );

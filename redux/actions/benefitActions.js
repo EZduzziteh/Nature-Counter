@@ -10,7 +10,11 @@ export function fetchBenefits() {
 		const header = await createToken();
 		const request = axios.get(baseUrl + 'benefits', header);
 		return request.then(
-			response => dispatch(getBenefits(response)),
+			((response) => {
+			    console.log("fetchBenefits response:", response.data);
+			    dispatch(getBenefits(response));
+
+			}),
 			err => dispatch(benefitsFailed(err))
 		);
 	}

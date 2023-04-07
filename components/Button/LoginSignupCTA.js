@@ -10,15 +10,13 @@ import styles from './styles';
  * @return {JSX.Element}
  * @constructor
  */
-const LoginSignupCTA = ({ promptLabel, buttonLabel, onPress }) => {
-  return (
-    <View style={styles.signUpNowPromptContainer}>
-      <Text style={styles.dontHaveAccountLabel}>{promptLabel}</Text>
-      <TouchableOpacity style={styles.signUpNowButton} onPress={onPress}>
-        <Text>{buttonLabel}</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
+const LoginSignupCTA = ({ promptLabel, buttonLabel, onPress }) => (
+  <View style={styles.signUpNowPromptContainer}>
+    <Text style={styles.dontHaveAccountLabel}>{promptLabel}</Text>
+    <TouchableOpacity onPress={onPress}>
+      <Text style={styles.signUpNowButton}>{buttonLabel}</Text>
+    </TouchableOpacity>
+  </View>
+);
 
 export default LoginSignupCTA;

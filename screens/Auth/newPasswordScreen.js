@@ -1,114 +1,91 @@
 // @ts-ignore
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 // @ts-ignore
 import {
-  View,
   Text,
-  TouchableOpacity,
-  Image,
   StyleSheet,
   KeyboardAvoidingView,
+  View,
 } from 'react-native';
-import TextInput from '../../components/Input/TextInput';
-import auth, {
-  FacebookAuthProvider,
-  GoogleAuthProvider,
-  AppleAuthpProvider,
-} from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth';
 import errors from './errors';
-import {GoogleSignin} from '@react-native-community/google-signin';
-import {LoginManager, AccessToken} from 'react-native-fbsdk';
-import * as userActions from '../../redux/actions/userActions';
-import { Button, SocialLoginButton, LoginSignupCTA } from '../../components/Button';
+import TextInput from '../../components/Input/TextInput';
+import { Button } from '../../components/Button';
 import ErrorPrompt from '../../components/Label/ErrorPrompt';
+import WelcomeLogo from './WelcomeLogo';
+import PasswordValidation from '../../components/Utilities/PasswordValidation';
 
-const newPasswordScreen = ({navigation}) => {
-  const [email, setEmail] = useState('');
+const newPasswordScreen = ({ navigation, route: { params: { oobCode } } }) => {
   const [password, setPassword] = useState('');
   const [verifyPassword, setVerifyPassword] = useState('');
   const [error, setError] = useState(null);
-  const [eyeIcon, setEyeIcon] = useState(true);
-  const [updated, setUpdated] = useState(true)
-
-  useEffect(() => {
-    GoogleSignin.configure({
-      webClientId:
-        '741177480474-6um6esqgrgg2fje8lhacfsrqt35eet3a.apps.googleusercontent.com',
-    });
-    
-  }, []);
+  const [passwordHidden, setPasswordHidden] = useState(true);
+  const [verifyPasswordHidden, setVerifyPasswordHidden] = useState(true);
+  const [updated, setUpdated] = useState(false);
 
   const handleNewPassword = async () => {
-    if (!password || !verifyPassword) {
-      return setError('Please enter a valid email address or password');
-    }
+    setError(null);
 
     if (password !== verifyPassword) {
-      return setError("Password and verify password do not match")
-    } else {
-      setUpdated(true)
-  }
+      return setError('Password and verify password do not match');
+    }
+
+    try {
+      await auth().confirmPasswordReset(oobCode, password);
+      setUpdated(true);
+    } catch (err) {
+      console.error(err);
+      setError(errors[err.code]);
+    }
   };
 
   return (
     <KeyboardAvoidingView style={styles.container}>
-      <View style={styles.shrink}>
-      <View>
-        <Image
-          style={styles.loginLogo}
-          source={require('../../assets/Frame26.png')}
-        />
-      </View>
-      <Text style={styles.loginGreeting}>Welcome to Nature Counter!</Text>
-      <View style={styles.bar} />
-</View>
-{!updated ? 
-<Text style={styles.spacing}> Please type your new password</Text>
-:
-<Text style={styles.textline}> Your password has been updated!</Text>
-}
-{!updated && <TextInput
-        passwordInput
-        placeholder="New Password"
-        value={password}
-        secureTextEntry={eyeIcon}
-        onChangeText={(pw) => setPassword(pw)}
-        eyeIcon={eyeIcon}
-        onPress={() => setEyeIcon(!eyeIcon)}
-      />
-}
-{!updated && <TextInput
-        passwordInput
-        placeholder="Verify Password"
-        value={verifyPassword}
-        secureTextEntry={eyeIcon}
-        onChangeText={(pw) => setVerifyPassword(pw)}
-        eyeIcon={eyeIcon}
-        onPress={() => setEyeIcon(!eyeIcon)}
-      />
-}
-{updated && <Image
-          style={styles.checkmark}
-          source={require('../../assets/checkmark2.png')}
-        />
-}
-{!updated && <LoginSignupCTA style={styles.button}
-        promptLabel="Don’t have an account?"
-        buttonLabel="Sign up"
-        onPress={() => navigation.navigate('Register')}
-      />}
-      <Text> </Text>
-{!updated ?
-        <Button label="Submit" onPress={handleNewPassword} />
-:
-<Button label="Login" onPress={() => navigation.navigate('Login')} />
-}
-      {updated &&  <LoginSignupCTA style={styles.button}
-        promptLabel="Don’t have an account?"
-        buttonLabel="Sign up"
-        onPress={() => navigation.navigate('Register')}
-      />
-}
+      {updated ? (
+        <>
+          <WelcomeLogo text={'Your Password\nIs Now Updated'} width={260} large />
+          <Text style={styles.textline}>
+            You can log in to Nature Counter with your updated password.
+          </Text>
+          <View style={{ flexGrow: 1 }} />
+          <Button label="Login" onPress={() => navigation.navigate('Login')} />
+        </>
+      ) : (
+        <>
+          <WelcomeLogo text="Password Reset" width={260} />
+          <Text style={styles.spacing}>Please enter your new password</Text>
+          <TextInput
+            passwordInput
+            placeholder="Password"
+            value={password}
+            secureTextEntry={passwordHidden}
+            onChangeText={(pw) => setPassword(pw)}
+            eyeIcon={passwordHidden}
+            onPress={() => setPasswordHidden(!passwordHidden)}
+          />
+          <TextInput
+            passwordInput
+            placeholder="Verify Password"
+            value={verifyPassword}
+            secureTextEntry={verifyPasswordHidden}
+            onChangeText={(pw) => setVerifyPassword(pw)}
+            eyeIcon={verifyPasswordHidden}
+            onPress={() => setVerifyPasswordHidden(!verifyPasswordHidden)}
+          />
+          <View style={styles.requirementContainer}>
+            <PasswordValidation password={password} />
+          </View>
+          <View style={{ flexGrow: 1 }} />
+          <View style={styles.submitButtonContainer}>
+            <Button
+              label="Reset"
+              onPress={password && verifyPassword ? handleNewPassword : null}
+              type={password && verifyPassword ? 'green' : 'transparent'}
+            />
+          </View>
+        </>
+      )}
+
       <ErrorPrompt errorMsg={error} />
     </KeyboardAvoidingView>
   );
@@ -121,85 +98,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     paddingHorizontal: 20,
+    paddingTop: 80,
   },
-  shrink: {
-    marginBottom: 37,
-    marginTop: -70,
-  },
-  socialLoginContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 30,
-  },
-  signUpNowPromptContainer: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-    marginTop: 30,
-    fontSize: 12,
-  },
-  signUpNowButton: {
-    borderColor: 'black',
-    borderBottomWidth: 1,
-  },
-  forgotPasswordContainer: {
-    marginHorizontal: 30,
-    marginBottom: 60,
-    marginTop: 10,
-  },
-  forgotPasswordButton: {
-    color: 'rgba(0,0,0,0.5)',
-    fontSize: 13,
-    marginHorizontal: 8,
-    textAlign: 'right',
-  },
-  dontHaveAccountLabel: {
-    color: 'rgba(0,0,0,0.5)',
-    marginRight: 10,
-  },
-  loginLogo: {
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-    transform: [{scale: 0.6}],
-    marginBottom: -40,
-  },
-  loginGreeting: {
-    marginTop: 40,
-    marginBottom: 70,
-    fontSize: 34,
-    fontWeight: 'bold',
-    width: 275,
-    lineHeight: 40,
-    alignItems: 'center',
-    alignSelf: 'center',
-    fontFamily: 'Roboto',
-  },
-  bar: {
-    marginTop: -85,
-    backgroundColor: 'rgba(36,191,156,0.2)',
-    height: 17,
-    width: 269,
-    alignSelf: 'center',
-  },
-  form: {
-    marginHorizontal: 38,
-    marginBottom: 2,
-    borderBottomWidth: 1,
-    borderStyle: 'solid',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingRight: 12,
-    alignItems: 'center',
-  },
-  button: {
-    marginBottom: 50,
+  requirementContainer: {
+    margin: 5,
   },
   spacing: {
-    marginBottom: 12
+    marginBottom: 12,
   },
   textline: {
     marginBottom: 12,
-    textAlign: 'center',
+  },
+  submitButtonContainer: {
+    marginTop: 25,
   },
   checkmark: {
     color: 'rgba(36,191,156,1)',
@@ -209,6 +120,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 10,
     maxWidth: 80,
-    maxHeight: 80
+    maxHeight: 80,
   },
 });

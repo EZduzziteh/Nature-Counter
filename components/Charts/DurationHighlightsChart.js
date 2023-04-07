@@ -1,5 +1,5 @@
 import React, {UseState, useEffect} from 'react';
-import { View, Text, Button } from 'native-base';
+import { View, Text, Button, NativeBaseProvider } from 'native-base';
 import {Image} from 'react-native'
 import {VictoryBar, VictoryChart, VictoryGroup, VictoryTheme } from 'victory-native';
 import { green } from 'react-native-redash';
@@ -77,7 +77,8 @@ function DurationHighlightsChart ()  {
     const [currentMinutesInRange, setCurrentMinutes] = React.useState(45);
 
 
-    return <View style = {styles.backgroundColor}>
+    return <NativeBaseProvider>
+    <View style = {styles.backgroundColor}>
         
     <View style={[ styles.container,{ flexDirection: 'row',}, ]}>
         <DurationHighlightsLogo></DurationHighlightsLogo>
@@ -120,6 +121,8 @@ function DurationHighlightsChart ()  {
         </VictoryChart>
         </View>
     </View>
+    
+</NativeBaseProvider>
 };
 
 export default DurationHighlightsChart;
