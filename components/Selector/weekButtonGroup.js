@@ -7,7 +7,7 @@ function WeekButtonGroup ({callback})  {
 
   return (
     <View elevation = {5} style={{ flexDirection: 'row',
-                    margin:5, 
+                    margin:16, 
                 }}>
       <TouchableOpacity
         style={{

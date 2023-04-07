@@ -31,7 +31,7 @@ const AchievementsSection = () => {
   return (
     <>
       <View
-        style={{flexDirection: 'row', justifyContent: 'flex-end', right: 25}}>
+        style={{flexDirection: 'row', justifyContent: 'flex-end', right: 25,}}>
         <ShareIcon
           width="30"
           height="30"
@@ -46,7 +46,7 @@ const AchievementsSection = () => {
 
       <ScrollView horizontal={true}>
         <View style={styles.evenRow}>
-          <LevelBadge />
+          {/*<LevelBadge />*/}
           <Badge />
           <VisitsBadge />
           {mins === 120 ? <GoldBadge /> : null}

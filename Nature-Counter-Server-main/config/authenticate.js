@@ -2,6 +2,8 @@ const admin = require('firebase-admin');
 
 
 const getAuthToken = (req, res, next) => {
+    
+    console.log(req.headers.autorization);
     if (
         req.headers.authorization &&
         req.headers.authorization.split(' ')[0] === 'Bearer'
@@ -10,6 +12,8 @@ const getAuthToken = (req, res, next) => {
     } else {
         req.authToken = null;
     }
+    
+    console.log(req.authToken);
     next();
 };
 
@@ -22,13 +26,15 @@ const getAuthToken = (req, res, next) => {
 exports.verifyUser = (req, res, next) => {
     console.log('VERIFYING USER');
     getAuthToken(req, res, async () => {
-        
+        console.log("auth token: "+req);
         try {
             const { authToken } = req;
             const userInfo = await admin
                 .auth()
                 .verifyIdToken(authToken);
+            console.log("user: "+req);
             req.authId = userInfo.uid;
+            console.log("auth id: "+req.authId);
             return next();
         } catch (e) {
             //return next();

@@ -8,6 +8,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginTop: 16,
   },
+  container:{
+    marginLeft: 16,
+  },
   SectionHeaderTitle:{
     fontSize: 16,
   },
@@ -16,6 +19,7 @@ const styles = StyleSheet.create({
   evenRow: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
+    marginLeft: 16,
   },
   badge: {
     width: 120,
@@ -27,7 +31,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   graphContainer:{
-    margin: 2,
+    margin: 16,
     backgroundColor:'#FFFFFF',
     borderStyle:'solid',
     borderColor:'rgb(100, 100, 100)',
@@ -57,9 +61,11 @@ const styles = StyleSheet.create({
   tipsContainer:{
     backgroundColor: '#3A375F', 
     color: 'rgb(0, 204, 102)', 
-    width: 390, 
+    
     padding:10,
     borderRadius:13,
+    marginLeft:16,
+    marginRight:16,
   },
   tipsText:{
     margin: 10,

@@ -15,6 +15,7 @@ import {
   TouchableOpacity,
   Animated,
 } from 'react-native';
+import style from './styles';
 
 // Modal Pop Up screen constructor
 const ModalPoup = ({visible, children}) => {
@@ -80,13 +81,13 @@ const BenefitsGainedSection = () => {
   const link = learnMore
   return (
     <View>
-    <View style={[ styles.container,{ flexDirection: 'row',}, ]}>
+    <View style={[ style.container,{ flexDirection: 'row',}, ]}>
     
     <EstimatedBenefitsLogo></EstimatedBenefitsLogo>
     <SectionHeaderRow title="Estimated Benefits"/>
     </View>
 
-    <View style={{flex: 1, top: 0, justifyContent: 'center', alignItems: 'center'}}>
+    <View style={{flex: 1, top: 0, justifyContent: 'center', alignItems: 'center', margin: 6}}>
      
       <ModalPoup visible={visible}>
         <View style={{alignItems: 'center'}}>
