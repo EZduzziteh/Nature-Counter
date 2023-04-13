@@ -463,7 +463,7 @@ export default function MainScreens({logout, userName}) {
           <Tab.Screen
             name="ReportScreens"
             component={ReportNavigator}
-            options={{title: 'Report'}}
+            options={{title: 'Health Report'}}
           />
           
           

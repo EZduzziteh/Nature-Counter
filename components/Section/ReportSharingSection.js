@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Image, ScrollView, ToastAndroid } from 'react-native';
-import { View, Text, TouchableOpacity, Button, CheckBox, NativeBaseProvider } from 'native-base'; 
+import { Image, ScrollView, ToastAndroid ,Button,  Text, View } from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
+import {   TouchableOpacity,  NativeBaseProvider } from 'native-base'; 
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 import NC_APP from '../../assets/icons/Share-Illustration.svg'
@@ -186,28 +187,44 @@ function ReportSharingSection() {
     <ScrollView>
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
     <NC_APP width="100" height="100" />
-    <Button></Button>
-    {/** 
+    
     <Text style={{ marginTop: 20, fontSize: 16, width: '100%' }}>Set Dates</Text>
-    <Button onPress={showDatepicker} style={{ backgroundColor: 'green', color: 'green'}}>
-        <Text style={{ fontSize: 16 }}>Set Dates</Text>
-      </Button>
-      
+    <View style={{ backgroundColor: 'green', color: 'green'} }>
+    <Button onPress={showDatepicker} title = "Set Dates" color= 'green'></Button>
+    </View>
       {show && <DateTimePicker showIcon={true} testID="dateTimePicker" value={date} mode={mode} is24Hour={true} display="default" onChange={onChange} />}
       <View style={{ marginTop: 30, backgroundColor: '#0f0', height: 1, width: '100%' }} />
+
       <Text style={{ marginTop: 20, fontSize: 16 }}>Please confirm how you want to share your health report:</Text>
+
       <View style={{ flexDirection: 'row', marginTop: 10, width: '100%' }}>
         <Text style={{ marginLeft: 5, fontSize: 16, justifyContent: 'flex-start' }}>Send to email </Text>
-        <CheckBox style={{ position: 'absolute', borderColor: 'green', backgroundColor: emailChecked ? 'green' : 'white', marginLeft: 300 }} checked={emailChecked} onPress={() => {setEmailChecked(!emailChecked); setPhoneChecked(false)}} />
+        <CheckBox 
+         style={{ position: 'absolute', borderColor: emailChecked ? 'green':'white', backgroundColor: 'white', marginLeft: 300 }}
+         value={emailChecked} 
+         onValueChange={() => {setEmailChecked(!emailChecked); setPhoneChecked(false)}} />
       </View>
+
       <View style={{ flexDirection: 'row', marginTop: 10, width: '100%' }}>
         <Text style={{ fontSize: 16, marginLeft: 5 }}>Download to my phone</Text>
-        <CheckBox style={{ position: 'absolute', borderColor: 'green', backgroundColor: phoneChecked ? 'green' : 'white', marginLeft: 300 }} checked={phoneChecked} onPress={() =>{ setPhoneChecked(!phoneChecked); setEmailChecked(false)}} />
+        <CheckBox 
+          disabled={false}
+          style={{ position: 'absolute', borderColor: phoneChecked ? 'green' : 'white', backgroundColor: 'white', marginLeft: 300 }} 
+          value={phoneChecked} 
+          onValueChange={() =>{ setPhoneChecked(!phoneChecked); setEmailChecked(false)}} 
+        />
       </View>
-      <Button onPress={createPDF} style={{ flexDirection: 'row', width: "60%", bottom: 10, color: 'green', marginTop: 60, backgroundColor: 'green', justifyContent: 'center', alignSelf: 'center', alignItems: 'center', variant: 'rounded', borderRadius: 20 }}>
-        <Text style={{ color: 'white', fontSize: 16 }}>Confirm</Text>
-      </Button>
-*/}
+
+      <View style={{ flexDirection: 'row', width: "60%", bottom: 10, color: 'green', marginTop: 60, backgroundColor: 'green', justifyContent: 'center', alignSelf: 'center', alignItems: 'center', variant: 'rounded', borderRadius: 20 }}>
+      <Button 
+              color= 'green'
+              title = "Confirm" 
+              onPress={createPDF} 
+      />
+                
+      </View>
+
+
 
     </View>
       

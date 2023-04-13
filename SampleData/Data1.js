@@ -15,43 +15,43 @@ const Data = {
     [
         //this represents time spent in nature(in minutes) per week of the currently selected month
         //x: name y: total for the week
-        {x:'Week 1', y: 160, days:[
-                                    {name: "Mon", minutes: 24},
+        {x:'Week 1', y: 110, days:[
+                                    {name: "Mon", minutes: 30},
                                     {name: "Tue", minutes: 20},
                                     {name: "Wed", minutes: 10},
                                     {name: "Thu", minutes: 30},
-                                    {name: "Fri", minutes: 26},
-                                    {name: "Sat", minutes: 45},
+                                    {name: "Fri", minutes: 25},
+                                    {name: "Sat", minutes: 0},
                                     {name: "Sun", minutes: 5},
                                 ]
         },
-        {x:'Week 2', y: 137, days:[
+        {x:'Week 2', y: 107, days:[
                                 {name: "Mon", minutes: 22},
-                                {name: "Tue", minutes: 10},
+                                {name: "Tue", minutes: 0},
                                 {name: "Wed", minutes: 50},
-                                {name: "Thu", minutes: 45},
+                                {name: "Thu", minutes: 0},
                                 {name: "Fri", minutes: 5},
                                 {name: "Sat", minutes: 20},
-                                {name: "Sun", minutes: 15},
+                                {name: "Sun", minutes: 10},
                             ]
         },
-        {x:'Week 3', y: 143, days:[
+        {x:'Week 3', y: 70, days:[
                                 {name: "Mon", minutes: 15},
                                 {name: "Tue", minutes: 6},
                                 {name: "Wed", minutes: 12},
-                                {name: "Thu", minutes: 50},
-                                {name: "Fri", minutes: 30},
-                                {name: "Sat", minutes: 10},
+                                {name: "Thu", minutes: 0},
+                                {name: "Fri", minutes: 2},
+                                {name: "Sat", minutes: 15},
                                 {name: "Sun", minutes: 20},
                             ]
         },
-        {x:'Week 4', y: 225, days:[
+        {x:'Week 4', y: 120, days:[
                                 {name: "Mon", minutes: 20},
-                                {name: "Tue", minutes: 30},
+                                {name: "Tue", minutes: 15},
                                 {name: "Wed", minutes: 20},
                                 {name: "Thu", minutes: 30},
-                                {name: "Fri", minutes: 70},
-                                {name: "Sat", minutes: 50},
+                                {name: "Fri", minutes: 10},
+                                {name: "Sat", minutes: 25},
                                 {name: "Sun", minutes: 5},
                             ]
         },
@@ -73,8 +73,8 @@ const Data = {
         {x:'Dec', y: 5},
 
     ],
-    currentGoal: 60, //this is the goal for the user to spend time in nature and is represented in minutes
-    currentMonthlyGoal: 240, //goal in minutes for the month
+    currentGoal: 120, //this is the goal for the user to spend time in nature and is represented in minutes
+    currentMonthlyGoal: 480, //goal in minutes for the month
     currentAnnualGoal: 2880,//goal in minutes for the year
     
     tips:[

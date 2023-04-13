@@ -412,13 +412,15 @@ return (
 <View>
     
         {/*#TODO SASHA REMEMBER TO REMOVE THIS ITS JUST FOR TESTING SERVER AND DATABASE CONNECTIONS 
-        */}
+       
         <View>
             
             <Button  title = "Test server Add" onPress={()=>getArticles()}/>
-        </View>
+        </View> */}
+
+{/*
         <Button  color = '#459F5E' title = {text}  onPress = {()=>showMode('date')} />
-        
+        */}
 
         <View style={styles.calender}>
             <TouchableOpacity style = {styles.calenderButton} onPress={() =>showMode('date') }><Text>{text}</Text></TouchableOpacity>
