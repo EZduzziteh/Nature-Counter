@@ -21,6 +21,7 @@ import GoalSetting from './GoalSettingScreen';
 import LogSymptoms from './LogSympyomScreen';
 import GoalHistory from './GoalHistoryScreen';
 import ReportScreen from './ReportScreen';
+import ReportSharingSection from '../../components/Section/ReportSharingSection';
 import MapScreen from './Discover/MapScreen';
 import ProfileScreen from './ProfileScreen';
 import {BLACK, MEDIUM_GREY} from '../../components/Utilities/Constants';
@@ -204,13 +205,18 @@ function ReportNavigator() {
     <Stack.Navigator
       initialRouteName="ReportScreen"
       screenOptions={{
-        title: 'Health Report',
+        title: 'Report',
         headerStyle: {backgroundColor: '#F2F2F2', borderBottomWidth: 0},
       }}>
       <Stack.Screen name="ReportScreen" component={ReportScreen} />
+      
+      <Stack.Screen name="ReportDownloadScreen" component={ReportSharingSection} />
     </Stack.Navigator>
   );
 }
+
+
+
 function JournalNavigator() {
   return (
     <Stack.Navigator
@@ -459,6 +465,8 @@ export default function MainScreens({logout, userName}) {
             component={ReportNavigator}
             options={{title: 'Report'}}
           />
+          
+          
           <Tab.Screen
             name="JournalScreen"
             component={JournalNavigator}

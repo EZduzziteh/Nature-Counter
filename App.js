@@ -18,6 +18,7 @@ import MainScreens from './screens/App/MainScreens';
 import * as Constants from './components/Utilities/Constants';
 
 import 'react-native-url-polyfill/auto';
+import {NativeBaseProvider} from 'native-base';
 
 const authStack = createStackNavigator();
 
@@ -81,6 +82,8 @@ const App = (props) => {
 
   if (!email) {
     return (
+      
+    <NativeBaseProvider>
       <NavigationContainer ref={navigationRef}>
         <authStack.Navigator screenOptions={{ headerShown: false }}>
           <authStack.Screen name="Login" component={LoginScreen} />
@@ -95,6 +98,7 @@ const App = (props) => {
           {/* <authStack.Screen name="Test" component={Test} /> */}
         </authStack.Navigator>
       </NavigationContainer>
+      </NativeBaseProvider>
     );
   }
 
@@ -112,6 +116,8 @@ const App = (props) => {
    * Added  Paper Provider to handle Select/Drop down component
    */
   return (
+    <NativeBaseProvider>
+      
     <PaperProvider theme={theme}>
       <MainScreens
         logout={handleLogout}
@@ -120,6 +126,8 @@ const App = (props) => {
         userName={displayName}
       />
     </PaperProvider>
+    
+    </NativeBaseProvider>
   );
 };
 

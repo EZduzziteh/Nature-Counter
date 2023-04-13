@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Image, ScrollView, ToastAndroid } from 'react-native';
-import { View, Text, TouchableOpacity, Button, CheckBox } from 'native-base'; 
+import { View, Text, TouchableOpacity, Button, CheckBox, NativeBaseProvider } from 'native-base'; 
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 import NC_APP from '../../assets/icons/Share-Illustration.svg'
@@ -181,16 +181,18 @@ function ReportSharingSection() {
   }
 
   return (
+    
+   
     <ScrollView>
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <NC_APP width="100" height="100" />
-      <Button onPress={() => console.log('change profile picture')} style={styles.Button}>
-        {/* #TODO figure out why this doesnt work<Image source={LOGIN_ICON} />*/}
-      </Button>
-      <Text style={{ marginTop: 20, fontSize: 16, width: '100%' }}>Set Dates</Text>
-      <Button onPress={showDatepicker} style={{ backgroundColor: 'green', color: 'green'}}>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <NC_APP width="100" height="100" />
+    <Button></Button>
+    {/** 
+    <Text style={{ marginTop: 20, fontSize: 16, width: '100%' }}>Set Dates</Text>
+    <Button onPress={showDatepicker} style={{ backgroundColor: 'green', color: 'green'}}>
         <Text style={{ fontSize: 16 }}>Set Dates</Text>
       </Button>
+      
       {show && <DateTimePicker showIcon={true} testID="dateTimePicker" value={date} mode={mode} is24Hour={true} display="default" onChange={onChange} />}
       <View style={{ marginTop: 30, backgroundColor: '#0f0', height: 1, width: '100%' }} />
       <Text style={{ marginTop: 20, fontSize: 16 }}>Please confirm how you want to share your health report:</Text>
@@ -205,7 +207,10 @@ function ReportSharingSection() {
       <Button onPress={createPDF} style={{ flexDirection: 'row', width: "60%", bottom: 10, color: 'green', marginTop: 60, backgroundColor: 'green', justifyContent: 'center', alignSelf: 'center', alignItems: 'center', variant: 'rounded', borderRadius: 20 }}>
         <Text style={{ color: 'white', fontSize: 16 }}>Confirm</Text>
       </Button>
+*/}
+
     </View>
+      
     </ScrollView>
   );
 }
