@@ -148,23 +148,23 @@ switch(index){
         return "Feb"
     case 3:
         return "Mar"
-    case 1:
+    case 4:
         return "Apr"
-    case 2:
+    case 5:
         return "May"
-    case 3:
+    case 6:
         return "Jun"
-    case 1:
+    case 7:
         return "Jul"
-    case 2:
+    case 8:
         return "Aug"
-    case 3:
+    case 9:
         return "Sep"
-    case 1:
+    case 10:
         return "Oct"
-    case 2:
+    case 11:
         return "Nov"
-    case 3:
+    case 12:
         return "Dec"
     
 };
@@ -369,7 +369,7 @@ let config = {
     url: 'http://10.0.2.2:3000/journal/allentries?firebase_id=k66FFQGtKkN5fQc9HCJB7ABIuPh1',
     headers: { 
         'Origin': '1', 
-        'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImQwNTU5YzU5MDgzZDc3YWI2NDUxOThiNTIxZmM4ZmVmZmVlZmJkNjIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vbmF0dXJlLWNvdW50ZXItOTA4OGIiLCJhdWQiOiJuYXR1cmUtY291bnRlci05MDg4YiIsImF1dGhfdGltZSI6MTY3NDc5MTMyMCwidXNlcl9pZCI6IlNBeDB4dTF5Z2VXUzc1Y1FsSFVwbm1zUG9XNTMiLCJzdWIiOiJTQXgweHUxeWdlV1M3NWNRbEhVcG5tc1BvVzUzIiwiaWF0IjoxNjc0NzkxMzIwLCJleHAiOjE2NzQ3OTQ5MjAsImVtYWlsIjoiYW5kcmV3QHRlc3QuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImFuZHJld0B0ZXN0LmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.TJn3gWMea9IvM2837TuWUkXeCNGLSa4sSB_7tPa9Xjlf9Erf6ljG0iypehPrebrOfHaNXvoMjh36uUOLQLyQFboKjUD_7yM6Ke713PKHgvo5OsdN1mHd6gkZZc14AZJ6pPuNGsnzseRrb8P2UGy8wJT68eTLQNmBlYIKOzHvsjeTLJ2vDVzw5ADXD05XBJz_V10iOsdvZ9HNbgN_S5WnLxy98SCQ0RviXIX4dz0YuapqINduoE9inAIbC1U-hiwwDkcTcA_iHz44CfY7Ylv5wGBsgO9zSNVsgLyZqd5j54PbyYrMJBsT1ilcOqghEwNG4JKtT2iN32dY7f4IwlWgtQ'
+        'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImM4MjNkMWE0MTg5ZjI3NThjYWI4NDQ4ZmQ0MTIwN2ViZGZhMjVlMzkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vbmF0dXJlLWNvdW50ZXItOTA4OGIiLCJhdWQiOiJuYXR1cmUtY291bnRlci05MDg4YiIsImF1dGhfdGltZSI6MTY4MTQxNjkzOCwidXNlcl9pZCI6IjhLQndWVVZ4WmFZRWd2a3BuTnpKckQxRDZWdzEiLCJzdWIiOiI4S0J3VlVWeFphWUVndmtwbk56SnJEMUQ2VncxIiwiaWF0IjoxNjgxNDE2OTM4LCJleHAiOjE2ODE0MjA1MzgsImVtYWlsIjoicjNrdDRuZ2wzQGhvdG1haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbInIza3Q0bmdsM0Bob3RtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.NeccrdxhAtAq_wcbqAGE2yBGkkm501rIITyANg4TztL3JtjwTS2yLLSipcVtBYY3R2cU91EColQqArBcJmA8RlfihaVbhL6tWsLm9zDdAzFDYrRY-DN5WkN3z-CaylRvY2ojncegYZli4VcINt5PTycNiQBCzORCOa7FhSFULTGX2GC7mFrwgyqHfV7DUouYo8-oWZOq3dngoA1Ew3vF5vZrxwHR92SvewJPEQ3tKSiQhEr6GP2-fyVFUvWeCoTMyYmnRTLM9FwUxFxNBcnj6Vb9grBmre_rUT2sj--WoB5dIyF0uYNHV6RzI8bI1oForjJ35JXXByAwmfEL1gm3Og'
     }
     };
 
@@ -412,13 +412,13 @@ return (
 <View>
     
         {/*#TODO SASHA REMEMBER TO REMOVE THIS ITS JUST FOR TESTING SERVER AND DATABASE CONNECTIONS 
+        */}
         <View>
             
             <Button  title = "Test server Add" onPress={()=>getArticles()}/>
         </View>
         <Button  color = '#459F5E' title = {text}  onPress = {()=>showMode('date')} />
         
-        */}
 
         <View style={styles.calender}>
             <TouchableOpacity style = {styles.calenderButton} onPress={() =>showMode('date') }><Text>{text}</Text></TouchableOpacity>
