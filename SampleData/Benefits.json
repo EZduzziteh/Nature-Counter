@@ -6,7 +6,7 @@
         "text" : "Time in nature can result in a decrease in pulse rate (the physical sensation of a heart beat felt in the body) by 3.9%\nAmong healthy people, a lower resisting pulse rate is an indicator of a strong heart.",
         "nextButton": true,
         "learnMoreURL" : "https://crowddoing.world/",
-        "visible" : true,
+        "visible" : false,
         "timeTodisplay" : 40
       },
       {

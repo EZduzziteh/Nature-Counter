@@ -80,32 +80,32 @@ const BenefitsGainedSection = () => {
   const [nextButton, setNextButton] = React.useState(false);
   const link = learnMore
   return (
-    <View>
-    <View style={[ style.container,{ flexDirection: 'row',}, ]}>
-    
-    <EstimatedBenefitsLogo></EstimatedBenefitsLogo>
-    <SectionHeaderRow title="Estimated Benefits"/>
-    </View>
+    <View style={{ marginTop: 40, marginBottom: 50}}>
+      <View style={[ style.container,{ flexDirection: 'row',}, ]}>
+      
+      <EstimatedBenefitsLogo></EstimatedBenefitsLogo>
+      <SectionHeaderRow title="Estimated Benefits"/>
+      </View>
 
     <View style={{flex: 1, top: 0, justifyContent: 'center', alignItems: 'center', margin: 6}}>
      
       <ModalPoup visible={visible}>
-        <View style={{alignItems: 'center'}}>
-          <View style={styles.header}>
-            <TouchableOpacity onPress={() => setVisible(false)}>
-              <Image 
-                source={require('../../assets/x.png')}
-                style={{height: 10, width: 10}}
-              />
-            </TouchableOpacity>
+          <View style={{alignItems: 'center'}}>
+            <View style={styles.header}>
+              <TouchableOpacity onPress={() => setVisible(false)}>
+                <Image 
+                  source={require('../../assets/x.png')}
+                  style={{height: 10, width: 10}}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-        <View style={{alignItems: 'center'}}>
-          <Image
-            source={require('../../assets/icons/success.png')}
-            style={{height: 40, width: 40, marginVertical: 5}}
-          />
-        </View>
+          <View style={{alignItems: 'center'}}>
+            <Image
+              source={require('../../assets/icons/success.png')}
+              style={{height: 40, width: 40, marginVertical: 5}}
+            />
+          </View>
         <Text
           style={{
             marginVertical: 30,
@@ -123,9 +123,9 @@ const BenefitsGainedSection = () => {
           onPress={() => Linking.openURL(link)}>
           Learn More{'\n'}{'\n'}{'\n'}
         </Text>
-        <View style={[{ width: "50%", margin: 10}]}>
-        { nextButton && <Button color="green" title="Next"></Button> } 
-        </View>
+          <View style={[{ width: "50%", margin: 10}]}>
+          { nextButton && <Button color="green" title="Next"></Button> } 
+          </View>
       </ModalPoup>
 
       {Benefits.benefits
